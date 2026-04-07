@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Try the IntegraLayer Demo</title>
+  <meta name="description" content="Interactive demo of the IntegraLayer public verification page. Toggle valid, expired, and revoked states to see how it looks in the wild." />
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <style>
+    /* Demo-page–only layout */
+    .demo-hero { padding: 72px 0 36px; background:
+      radial-gradient(1200px 500px at 85% 0%, rgba(10,102,255,.08), transparent 60%),
+      radial-gradient(900px 500px at 0% 100%, rgba(0,196,140,.07), transparent 60%),
+      var(--bg);
+    }
+    .demo-hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); }
+    .demo-stage {
+      padding: 24px 0 96px;
+    }
+    .stage-wrap {
+      background: #F4F7FA;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 48px 16px 64px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .stage-wrap::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(600px 280px at 20% 0%, rgba(10,102,255,.06), transparent 70%),
+        radial-gradient(500px 280px at 90% 100%, rgba(0,196,140,.06), transparent 70%);
+      pointer-events: none;
+    }
+    .stage-wrap iframe {
+      position: relative; z-index: 1;
+      border: 0;
+      width: 100%;
+      max-width: 420px;
+      height: 1080px;
+      background: transparent;
+    }
+    .demo-intro {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .demo-intro ul { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 10px; }
+    .demo-intro li {
+      padding-left: 28px;
+      position: relative;
+      color: var(--ink-2);
+    }
+    .demo-intro li::before {
+      content: "✓";
+      position: absolute; left: 0; top: 0;
+      color: var(--accent-2);
+      font-weight: 800;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--muted); font-size: .9rem; margin-bottom: 14px;
+    }
+    .back-link:hover { color: var(--accent); }
+    .demo-cta {
+      margin-top: 48px;
+      text-align: center;
+    }
+    @media (max-width: 860px) {
+      .demo-intro { grid-template-columns: 1fr; }
+      .stage-wrap { padding: 24px 8px 32px; }
+      .stage-wrap iframe { height: 1020px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="../index.html" aria-label="IntegraLayer home">
+        <img src="../assets/img/logo-black.png" alt="IntegraLayer" />
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="../index.html#how-it-works">How It Works</a>
+        <a href="../index.html#verification-page">Verification Page</a>
+        <a href="index.html">Demo</a>
+        <a href="../index.html#neutrality">Neutrality</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <a class="btn btn-primary nav-cta" href="https://calendly.com/rachel-integralayer/30min" target="_blank" rel="noopener">Book a call</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="demo-hero">
+      <div class="container">
+        <a class="back-link" href="../index.html">← Back to home</a>
+        <div class="demo-intro">
+          <div>
+            <p class="eyebrow">Interactive Demo</p>
+            <h1>Try the verification page.</h1>
+            <p class="lede">This is exactly what someone sees when they scan a certifier's QR code. Toggle the state to watch the page respond.</p>
+            <ul>
+              <li>Valid &middot; Expired &middot; Revoked states</li>
+              <li>Live blockchain hash reference</li>
+              <li>Certifier-branded, neutral by design</li>
+            </ul>
+          </div>
+          <div style="text-align:center">
+            <p class="fineprint" style="font-size:.9rem;margin-bottom:10px">No account needed. Full issuer dashboard available on desktop only.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-stage">
+      <div class="container">
+        <div class="stage-wrap">
+          <iframe src="verification.html" title="IntegraLayer verification page demo" loading="lazy"></iframe>
+        </div>
+
+        <div class="demo-cta">
+          <h2>Ready to see it with your own certification data?</h2>
+          <p class="body muted">Pilots are approval-led and expect Legal and Compliance involvement.</p>
+          <a class="btn btn-primary btn-lg" href="https://calendly.com/rachel-integralayer/30min" target="_blank" rel="noopener">Book a call</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="../assets/img/logo-white.png" alt="IntegraLayer" class="footer-logo" />
+        <p class="footer-tag">The Truth Is Verifiable.</p>
+      </div>
+      <div class="footer-legal">
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Privacy Policy</a>
+        <p>© 2026 IntegraLayer LLC · Patent Pending</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',system-ui,sans-serif;background:#F4F7FA;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:1.25rem}
+.controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.ctrl-btn{padding:8px 20px;border:1px solid #D0DDE8;border-radius:20px;font-size:13px;cursor:pointer;background:#fff;color:#0B1F3A;font-family:'DM Sans',system-ui,sans-serif;transition:all 0.15s}
+.ctrl-btn.av{background:#0F9478;color:#fff;border-color:#0F9478}
+.ctrl-btn.ae{background:#8A5A00;color:#fff;border-color:#8A5A00}
+.ctrl-btn.ar{background:#A32D2D;color:#fff;border-color:#A32D2D}
+.phone{width:300px;border-radius:34px;border:7px solid #1a1a1a;background:#1a1a1a;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.2)}
+.notch{height:26px;background:#1a1a1a;display:flex;align-items:center;justify-content:center}
+.notch-pill{width:70px;height:11px;background:#000;border-radius:6px}
+.pscreen{background:#F4F7FA;border-radius:0 0 27px 27px;overflow:hidden}
+.sbanner{padding:13px 16px;display:flex;align-items:center;gap:10px}
+.sbanner.v{background:#0F9478}
+.sbanner.e{background:#8A5A00}
+.sbanner.r{background:#A32D2D}
+.sico{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.stitle{font-size:13px;font-weight:600;color:#fff}
+.ssub{font-size:10px;color:rgba(255,255,255,0.75);margin-top:1px}
+.pbody{padding:14px 13px}
+.notice{border-radius:9px;padding:9px 11px;margin-bottom:11px;display:none}
+.notice.show{display:block}
+.ne{background:#FEF3CD;border:1px solid #EF9F27}
+.nr{background:#FDECEA;border:1px solid #F09595}
+.ntitle{font-size:11px;font-weight:600;margin-bottom:2px}
+.ne .ntitle{color:#8A5A00}
+.nr .ntitle{color:#A32D2D}
+.ntext{font-size:10px;line-height:1.4}
+.ne .ntext{color:#633806}
+.nr .ntext{color:#791F1F}
+.irow{display:flex;align-items:center;gap:9px;margin-bottom:13px}
+.iavatar{width:36px;height:36px;border-radius:9px;background:#0B1F3A;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:#fff;flex-shrink:0;text-decoration:none}
+.iname{font-size:12px;font-weight:600;color:#0B1F3A;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
+.iname:hover{color:#1E6FBF}
+.isub{font-size:9px;color:#6B8299;margin-top:1px}
+.mcard{background:#fff;border:0.5px solid rgba(0,0,0,0.1);border-radius:13px;padding:11px 13px;margin-bottom:9px}
+.clabel{font-size:9px;font-weight:500;color:#6B8299;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:9px}
+.frow{display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:0.5px solid rgba(0,0,0,0.07);gap:7px}
+.frow:last-child{border-bottom:none;padding-bottom:0}
+.flabel{font-size:10px;color:#6B8299;flex-shrink:0;padding-top:1px}
+.fval{font-size:11px;font-weight:500;color:#0B1F3A;text-align:right;line-height:1.4}
+.fmono{font-family:'DM Mono',monospace;font-size:9px;color:#1E6FBF;text-align:right}
+.flink{font-size:11px;font-weight:500;color:#1E6FBF;text-align:right;text-decoration:none;display:inline-flex;align-items:center;gap:2px;line-height:1.4}
+.flink:hover{text-decoration:underline}
+.pdfbtn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:11px;background:#0B1F3A;color:#fff;border:none;border-radius:11px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',system-ui,sans-serif;margin-bottom:9px}
+.pdfbtn:hover{background:#1A3A5C}
+.hashval{font-family:'DM Mono',monospace;font-size:8px;color:#1E6FBF;word-break:break-all;line-height:1.5;margin-top:3px}
+.chainfoot{margin-top:5px;padding-top:5px;border-top:0.5px solid rgba(0,0,0,0.07);font-size:8px;color:#6B8299}
+.pfooter{text-align:center;padding:11px 13px 14px;border-top:0.5px solid rgba(0,0,0,0.08)}
+.fbrand{font-size:10px;color:#6B8299}
+.fbrand a{color:#0B1F3A;font-weight:600;text-decoration:none}
+.ftag{font-size:8px;color:#6B8299;margin-top:2px;font-style:italic}
+</style>
+
+<div class="controls">
+  <button class="ctrl-btn av" id="bv" onclick="setStatus('valid')">✓ Valid</button>
+  <button class="ctrl-btn" id="be" onclick="setStatus('expired')">⚠ Expired</button>
+  <button class="ctrl-btn" id="br" onclick="setStatus('revoked')">✕ Revoked</button>
+</div>
+
+<div class="phone">
+  <div class="notch"><div class="notch-pill"></div></div>
+  <div class="pscreen">
+    <div class="sbanner v" id="sb">
+      <div class="sico" id="si">✓</div>
+      <div>
+        <div class="stitle" id="st">Certificate verified</div>
+        <div class="ssub" id="ss">Valid &amp; active</div>
+      </div>
+    </div>
+    <div class="pbody">
+      <div class="notice ne" id="en"><div class="ntitle">Certificate expired</div><div class="ntext">This certificate has expired. Contact the issuing body to request renewal.</div></div>
+      <div class="notice nr" id="rn"><div class="ntitle">Certificate revoked</div><div class="ntext">This certificate has been revoked and is no longer valid.</div></div>
+      <div class="irow">
+        <a href="https://roch.org" class="iavatar">RC</a>
+        <div>
+          <a href="https://roch.org" class="iname">Roch Certification Body <span style="font-size:9px;opacity:0.5">↗</span></a>
+          <div class="isub">Dog-Friendly Hospitality Standards</div>
+        </div>
+      </div>
+      <div class="mcard">
+        <div class="clabel">Certificate details</div>
+        <div class="frow"><span class="flabel">Issued to</span><a href="https://pawsomestays.com" class="flink">Pawsome Stays Hotel Group <span style="font-size:9px;opacity:0.6">↗</span></a></div>
+        <div class="frow"><span class="flabel">Type</span><span class="fval">Dog-Friendly Accommodation</span></div>
+        <div class="frow"><span class="flabel">Issued</span><span class="fval">Mar 22, 2026</span></div>
+        <div class="frow"><span class="flabel">Expires</span><span class="fval" id="ev">Mar 22, 2027</span></div>
+        <div class="frow"><span class="flabel">Cert ID</span><span class="fmono">IL-2026-0005</span></div>
+      </div>
+      <button class="pdfbtn">⬇ View certificate PDF</button>
+      <div class="mcard">
+        <div class="clabel">Blockchain proof</div>
+        <div class="hashval">5vD8rKpQmT2eNxJ9aWcBhLfY3ZuRo7iS1MgXnEkPd4Cv6bFw</div>
+        <div class="chainfoot">Hash anchored Mar 22, 2026 · 14:32:07 UTC</div>
+      </div>
+    </div>
+    <div class="pfooter">
+      <div class="fbrand">Verified by <a href="https://integralayer.io">IntegraLayer ↗</a></div>
+      <div class="ftag">Trust isn't claimed. It's proven.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function setStatus(s){
+  var sb=document.getElementById('sb');
+  var si=document.getElementById('si');
+  var st=document.getElementById('st');
+  var ss=document.getElementById('ss');
+  var en=document.getElementById('en');
+  var rn=document.getElementById('rn');
+  var ev=document.getElementById('ev');
+  document.querySelectorAll('.ctrl-btn').forEach(function(b){b.className='ctrl-btn';});
+  en.className='notice ne';
+  rn.className='notice nr';
+  sb.className='sbanner';
+  if(s==='valid'){
+    sb.classList.add('v');si.textContent='✓';st.textContent='Certificate verified';ss.textContent='Valid & active';ev.textContent='Mar 22, 2027';document.getElementById('bv').classList.add('av');
+  } else if(s==='expired'){
+    sb.classList.add('e');si.textContent='⚠';st.textContent='Certificate expired';ss.textContent='Expired · Not valid';ev.textContent='Mar 22, 2026';en.classList.add('show');document.getElementById('be').classList.add('ae');
+  } else {
+    sb.classList.add('r');si.textContent='✕';st.textContent='Certificate revoked';ss.textContent='Revoked · Invalid';ev.textContent='Mar 22, 2027';rn.classList.add('show');document.getElementById('br').classList.add('ar');
+  }
+}
+</script>

@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IntegraLayer — Public Certification Verification</title>
+  <meta name="description" content="Neutral infrastructure for public certification verification. Make certification status independently verifiable through a public reference page." />
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="IntegraLayer home">
+        <img src="assets/img/logo-black.png" alt="IntegraLayer" />
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#who-we-are">Who We Are</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#verification-page">Verification Page</a>
+        <a href="demo/index.html">Demo</a>
+        <a href="#who-its-for">Who It's For</a>
+        <a href="#neutrality">Neutrality</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-primary nav-cta" href="https://calendly.com/rachel-integralayer/30min" target="_blank" rel="noopener">Book a call</a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Public Certification Verification</p>
+          <h1>Trust isn't claimed.<br/><span class="accent">It's proven.</span></h1>
+          <p class="lede">Neutral infrastructure for public certification verification.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="https://calendly.com/rachel-integralayer/30min" target="_blank" rel="noopener">Request Pilot</a>
+            <a class="btn btn-ghost" href="demo/index.html">Try the demo →</a>
+          </div>
+          <ul class="hero-bullets">
+            <li>Immutable, time-stamped proof</li>
+            <li>Certifier-branded public page</li>
+            <li>Approval-safe by design</li>
+          </ul>
+        </div>
+        <div class="hero-visual">
+          <div class="phone-frame" aria-hidden="true">
+            <img src="assets/img/verification-mobile.png" alt="IntegraLayer verification page on mobile" />
+          </div>
+          <div class="hero-blob"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO WE ARE -->
+    <section id="who-we-are" class="section">
+      <div class="container narrow">
+        <p class="eyebrow center">Who We Are</p>
+        <h2 class="center">Neutral Infrastructure for Certification Verification</h2>
+        <p class="section-lede center">Designed for certification authorities.</p>
+        <p class="body">
+          IntegraLayer is a neutral infrastructure for public verification of certification status.
+          It enables certification bodies to make certificate status independently verifiable through
+          a public reference page. Authority remains with the certifier.
+          IntegraLayer does not issue certifications and does not judge compliance.
+        </p>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="section section-alt">
+      <div class="container narrow">
+        <p class="eyebrow center">The Problem</p>
+        <h2 class="center">When Certification Claims Can't Be Verified Publicly</h2>
+        <p class="body">
+          Certification marks are relied on by consumers, auditors, and regulators to confirm valid
+          participation in a certification program. When certificates expire or are revoked, marks
+          often remain visible — with no public way to confirm current status.
+        </p>
+        <p class="body">
+          Verification falls back to internal lookups, emails, or static PDFs. There is no neutral
+          reference point. When questions surface publicly, Legal is left to defend mark usage without
+          a verifiable artifact. <strong>That's when it reaches the Board.</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="section">
+      <div class="container">
+        <p class="eyebrow center">How It Works</p>
+        <h2 class="center">Four steps. Zero ambiguity.</h2>
+        <div class="steps">
+          <article class="step">
+            <div class="step-num">01</div>
+            <h3>Input</h3>
+            <p>The certification body provides certificate data — holder name, certification type,
+              issue date, expiration, and current status.</p>
+          </article>
+          <article class="step">
+            <div class="step-num">02</div>
+            <h3>Process</h3>
+            <p>Certificate data is cryptographically hashed and time-stamped. A unique QR code is
+              generated and linked to a public verification endpoint. The hash is written to an
+              immutable blockchain record.</p>
+          </article>
+          <article class="step">
+            <div class="step-num">03</div>
+            <h3>Output</h3>
+            <p>A certifier-branded public verification page showing current status — valid, expired,
+              or revoked — accessible to anyone who scans the QR code.</p>
+          </article>
+          <article class="step">
+            <div class="step-num">04</div>
+            <h3>Control</h3>
+            <p>The issuing organization controls everything. They issue, update, expire, and revoke.
+              IntegraLayer only reflects what the certifier reports. We never interpret, score, or override.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERIFICATION PAGE -->
+    <section id="verification-page" class="section section-dark">
+      <div class="container split">
+        <div>
+          <p class="eyebrow">The Verification Page</p>
+          <h2>Designed for public scrutiny.</h2>
+          <p class="body">The verification page clearly displays:</p>
+          <ul class="check-list">
+            <li>Certification holder</li>
+            <li>Issuing body</li>
+            <li>Current status: valid / expired / revoked</li>
+            <li>Time-bound framing: status as of last update</li>
+            <li>Link to view the referenced certificate</li>
+          </ul>
+          <p class="body muted">
+            Intended for customers, regulators, auditors, and the public.
+          </p>
+          <a class="btn btn-primary" href="demo/index.html">Try it yourself →</a>
+          <p class="fineprint">No account needed. Full issuer dashboard available on desktop only.</p>
+        </div>
+        <div class="visual-stack">
+          <div class="phone-frame small">
+            <img src="assets/img/verification-mobile.png" alt="Verification page preview" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO IT'S FOR -->
+    <section id="who-its-for" class="section">
+      <div class="container">
+        <p class="eyebrow center">Designed For</p>
+        <h2 class="center">Where neutral verification matters.</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Certification Organizations</h3>
+            <p>Including certification bodies, standards organizations, and accreditation programs.</p>
+          </div>
+          <div class="card">
+            <h3>Legal &amp; Compliance</h3>
+            <p>Leadership responsible for defending mark usage and certification integrity.</p>
+          </div>
+          <div class="card">
+            <h3>Board-Level Risk</h3>
+            <p>Risk owners who need verifiable, defensible public artifacts.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IS NOT -->
+    <section class="section section-alt">
+      <div class="container narrow">
+        <p class="eyebrow center">IntegraLayer Is Not</p>
+        <h2 class="center">A clear line, intentionally drawn.</h2>
+        <ul class="not-list">
+          <li>A certification authority</li>
+          <li>A compliance system</li>
+          <li>A system of record</li>
+          <li>An enforcement tool</li>
+          <li>An AI-driven decision engine</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- NEUTRALITY -->
+    <section id="neutrality" class="section">
+      <div class="container narrow">
+        <p class="eyebrow center">Security &amp; Neutrality</p>
+        <h2 class="center">Built on a neutrality-first principle.</h2>
+        <div class="pillars">
+          <div class="pillar"><h4>Minimal data retention</h4></div>
+          <div class="pillar"><h4>No opinionated outputs</h4></div>
+          <div class="pillar"><h4>No interpretive scoring</h4></div>
+          <div class="pillar"><h4>Approval-safe by design</h4></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / CTA -->
+    <section id="contact" class="section section-cta">
+      <div class="container narrow center">
+        <p class="eyebrow">Contact</p>
+        <h2>Request a Phase 1 Pilot Discussion</h2>
+        <p class="body">Pilots are approval-led and expect Legal and Compliance involvement.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg" href="https://calendly.com/rachel-integralayer/30min" target="_blank" rel="noopener">Book a call</a>
+          <a class="btn btn-ghost btn-lg" href="demo/index.html">See the demo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="assets/img/logo-white.png" alt="IntegraLayer" class="footer-logo" />
+        <p class="footer-tag">The Truth Is Verifiable.</p>
+      </div>
+      <div class="footer-legal">
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Privacy Policy</a>
+        <p>© 2026 IntegraLayer LLC · Patent Pending</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth:*)",
+      "WebFetch(domain:www.integralayer.io)",
+      "Read(//opt/homebrew/bin/**)",
+      "Bash(brew --version)",
+      "Bash(curl -sL -A \"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36\" \"https://www.integralayer.io\" -o /tmp/integralayer.html)",
+      "Read(//tmp/**)",
+      "Bash(python3 -c \":*)",
+      "Bash(python3:*)",
+      "Read(//Users/rachelburney/bin/**)",
+      "Read(//usr/local/**)",
+      "Bash(echo \"PATH=$PATH\")",
+      "Bash(env)",
+      "Bash(mkdir -p assets/img demo)",
+      "Bash(curl -sL -o assets/img/logo-black.png \"https://static.wixstatic.com/media/2388df_4825e5ada0b64d6ab21dbfb89371272b~mv2.png/v1/fill/w_756,h_220,al_c,q_90/IntegraLayer%20Horizontal%20Black%20Logo.png\")",
+      "Bash(curl -sL -o assets/img/logo-white.png \"https://static.wixstatic.com/media/2388df_d0c03f7db4ef4587b95b9216aad424f2~mv2.png/v1/fill/w_704,h_200,al_c,q_90/IntegraLayer%20Logo%20White%20Horizontal.png\")",
+      "Bash(curl -sL -o assets/img/verification-mobile.png \"https://static.wixstatic.com/media/2388df_0f1d0d1ebb684618afa46e0e82ba8d68~mv2.png/v1/fill/w_712,h_1478,al_c,q_90/IntegraLayer%20Verification%20Page%20Mobile.png\")",
+      "Bash(curl -sL -o assets/img/favicon.png \"https://static.wixstatic.com/media/2388df_ef57fd6e90be481a883403ab410c25b1~mv2.png/v1/fill/w_192,h_192,lg_1/2388df_ef57fd6e90be481a883403ab410c25b1~mv2.png\")",
+      "Bash(cp \"/Users/rachelburney/Downloads/integralayer-mobile-widget.html\" \"/Users/rachelburney/IntegraLayer Website - Claude/demo/verification.html\")",
+      "Bash(cp \"/Users/rachelburney/Downloads/integralayer-mobile-wix.html\" \"/Users/rachelburney/IntegraLayer Website - Claude/demo/verification-embed.html\")"
+    ]
+  }
+}

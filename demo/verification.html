@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B1F3A;--blue:#1E6FBF;--teal:#0F9478;
+  --font:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',monospace;
+}
+body{font-family:var(--font);background:#F4F7FA;padding:2rem 1rem;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+
+/* STATUS TOGGLE BUTTONS */
+.controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.ctrl-btn{padding:8px 20px;border:1px solid #D0DDE8;border-radius:20px;font-size:13px;cursor:pointer;background:#fff;color:#0B1F3A;font-family:var(--font);transition:all 0.15s}
+.ctrl-btn:hover{border-color:#0B1F3A}
+.ctrl-btn.active-valid{background:#0F9478;color:#fff;border-color:#0F9478}
+.ctrl-btn.active-expired{background:#8A5A00;color:#fff;border-color:#8A5A00}
+.ctrl-btn.active-revoked{background:#A32D2D;color:#fff;border-color:#A32D2D}
+
+/* PHONE FRAME */
+.phone-frame{width:320px;border-radius:36px;border:8px solid #1a1a1a;background:#1a1a1a;overflow:hidden;box-shadow:0 24px 48px rgba(0,0,0,0.25)}
+.phone-notch{height:28px;background:#1a1a1a;display:flex;align-items:center;justify-content:center}
+.notch-pill{width:80px;height:12px;background:#000;border-radius:6px}
+.phone-screen{background:#F4F7FA;border-radius:0 0 28px 28px;overflow:hidden}
+
+/* STATUS BANNER */
+.status-banner{padding:14px 18px;display:flex;align-items:center;gap:10px}
+.status-banner.valid{background:#0F9478}
+.status-banner.expired{background:#8A5A00}
+.status-banner.revoked{background:#A32D2D}
+.status-icon{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.status-title{font-size:14px;font-weight:600;color:#fff}
+.status-sub{font-size:11px;color:rgba(255,255,255,0.75);margin-top:1px}
+
+/* PHONE BODY */
+.phone-body{padding:16px 14px}
+
+/* NOTICES */
+.notice{border-radius:10px;padding:10px 12px;margin-bottom:12px;display:none}
+.notice.show{display:block}
+.notice.expired{background:#FEF3CD;border:1px solid #EF9F27}
+.notice.revoked{background:#FDECEA;border:1px solid #F09595}
+.notice-title{font-size:12px;font-weight:600;margin-bottom:3px}
+.notice.expired .notice-title{color:#8A5A00}
+.notice.revoked .notice-title{color:#A32D2D}
+.notice-text{font-size:11px;line-height:1.4}
+.notice.expired .notice-text{color:#633806}
+.notice.revoked .notice-text{color:#791F1F}
+
+/* ISSUER ROW */
+.issuer-row{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.issuer-avatar{width:38px;height:38px;border-radius:10px;background:#0B1F3A;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#fff;flex-shrink:0;text-decoration:none}
+.issuer-name{font-size:13px;font-weight:600;color:#0B1F3A;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
+.issuer-name:hover{color:#1E6FBF}
+.issuer-sub{font-size:10px;color:#6B8299;margin-top:1px;line-height:1.3}
+
+/* CERT CARD */
+.mobile-card{background:#fff;border:0.5px solid rgba(0,0,0,0.1);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.card-label{font-size:10px;font-weight:500;color:#6B8299;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px}
+.field-row{display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:0.5px solid rgba(0,0,0,0.07);gap:8px}
+.field-row:last-child{border-bottom:none;padding-bottom:0}
+.field-label{font-size:11px;color:#6B8299;flex-shrink:0;padding-top:1px}
+.field-value{font-size:12px;font-weight:500;color:#0B1F3A;text-align:right;line-height:1.4}
+.field-value.mono{font-family:var(--mono);font-size:10px;color:#1E6FBF}
+.field-link{font-size:12px;font-weight:500;color:#1E6FBF;text-align:right;text-decoration:none;display:inline-flex;align-items:center;gap:3px;line-height:1.4}
+.field-link:hover{text-decoration:underline}
+.field-link .ext{font-size:9px;opacity:0.6}
+
+/* PDF BUTTON */
+.pdf-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;background:#0B1F3A;color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--font);margin-bottom:10px}
+.pdf-btn:hover{background:#1A3A5C}
+
+/* BLOCKCHAIN CARD */
+.chain-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.hash-val{font-family:var(--mono);font-size:9px;color:#1E6FBF;word-break:break-all;line-height:1.5;margin-top:4px}
+.chain-footer{margin-top:6px;padding-top:6px;border-top:0.5px solid rgba(0,0,0,0.07);font-size:9px;color:#6B8299}
+
+/* FOOTER */
+.phone-footer{text-align:center;padding:12px 14px 16px;border-top:0.5px solid rgba(0,0,0,0.08)}
+.footer-brand{font-size:11px;color:#6B8299}
+.footer-brand a{color:#0B1F3A;font-weight:600;text-decoration:none}
+.footer-brand a:hover{text-decoration:underline}
+.footer-tag{font-size:9px;color:#6B8299;margin-top:2px;font-style:italic}
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <button class="ctrl-btn active-valid" id="btn-valid" onclick="setStatus('valid')">✓ Valid</button>
+  <button class="ctrl-btn" id="btn-expired" onclick="setStatus('expired')">⚠ Expired</button>
+  <button class="ctrl-btn" id="btn-revoked" onclick="setStatus('revoked')">✕ Revoked</button>
+</div>
+
+<div class="phone-frame">
+  <div class="phone-notch"><div class="notch-pill"></div></div>
+  <div class="phone-screen">
+
+    <div class="status-banner valid" id="status-banner">
+      <div class="status-icon" id="status-icon">✓</div>
+      <div>
+        <div class="status-title" id="status-title">Certificate verified</div>
+        <div class="status-sub" id="status-sub">Valid &amp; active</div>
+      </div>
+    </div>
+
+    <div class="phone-body">
+
+      <div class="notice expired" id="expired-notice">
+        <div class="notice-title">Certificate expired</div>
+        <div class="notice-text">This certificate has expired. Contact the issuing body to request renewal.</div>
+      </div>
+      <div class="notice revoked" id="revoked-notice">
+        <div class="notice-title">Certificate revoked</div>
+        <div class="notice-text">This certificate has been revoked by the issuing body and is no longer valid.</div>
+      </div>
+
+      <div class="issuer-row">
+        <a href="https://roch.org" class="issuer-avatar">RC</a>
+        <div>
+          <a href="https://roch.org" class="issuer-name">Roch Certification Body <span style="font-size:10px;opacity:0.5">↗</span></a>
+          <div class="issuer-sub">Dog-Friendly Hospitality Standards</div>
+        </div>
+      </div>
+
+      <div class="mobile-card">
+        <div class="card-label">Certificate details</div>
+        <div class="field-row">
+          <span class="field-label">Issued to</span>
+          <a href="https://pawsomestays.com" class="field-link">Pawsome Stays<br>Hotel Group <span class="ext">↗</span></a>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Type</span>
+          <span class="field-value">Dog-Friendly Accommodation</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Issued</span>
+          <span class="field-value">Mar 22, 2026</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Expires</span>
+          <span class="field-value" id="expires-val">Mar 22, 2027</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Cert ID</span>
+          <span class="field-value mono">IL-2026-0005</span>
+        </div>
+      </div>
+
+      <button class="pdf-btn">⬇ View certificate PDF</button>
+
+      <div class="mobile-card">
+        <div class="chain-header">
+          <div class="card-label" style="margin-bottom:0">Blockchain proof</div>
+        </div>
+        <div class="hash-val">5vD8rKpQmT2eNxJ9aWcBhLfY3ZuRo7iS1MgXnEkPd4Cv6bFw</div>
+        <div class="chain-footer">Hash anchored Mar 22, 2026 · 14:32:07 UTC</div>
+      </div>
+
+    </div>
+
+    <div class="phone-footer">
+      <div class="footer-brand">Verified by <a href="https://integralayer.io">IntegraLayer ↗</a></div>
+      <div class="footer-tag">Trust isn't claimed. It's proven.</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function setStatus(s){
+  var banner=document.getElementById('status-banner');
+  var icon=document.getElementById('status-icon');
+  var title=document.getElementById('status-title');
+  var sub=document.getElementById('status-sub');
+  var exp=document.getElementById('expired-notice');
+  var rev=document.getElementById('revoked-notice');
+  var expires=document.getElementById('expires-val');
+
+  document.querySelectorAll('.ctrl-btn').forEach(function(b){b.className='ctrl-btn';});
+  exp.className='notice expired';
+  rev.className='notice revoked';
+  banner.className='status-banner';
+
+  if(s==='valid'){
+    banner.classList.add('valid');
+    icon.textContent='✓';
+    title.textContent='Certificate verified';
+    sub.textContent='Valid & active';
+    expires.textContent='Mar 22, 2027';
+    document.getElementById('btn-valid').classList.add('active-valid');
+  } else if(s==='expired'){
+    banner.classList.add('expired');
+    icon.textContent='⚠';
+    title.textContent='Certificate expired';
+    sub.textContent='Expired Mar 22, 2026 · Not valid';
+    expires.textContent='Mar 22, 2026';
+    exp.classList.add('show');
+    document.getElementById('btn-expired').classList.add('active-expired');
+  } else {
+    banner.classList.add('revoked');
+    icon.textContent='✕';
+    title.textContent='Certificate revoked';
+    sub.textContent='Revoked by issuer · Invalid';
+    expires.textContent='Mar 22, 2027';
+    rev.classList.add('show');
+    document.getElementById('btn-revoked').classList.add('active-revoked');
+  }
+}
+</script>
+</body>
+</html>
