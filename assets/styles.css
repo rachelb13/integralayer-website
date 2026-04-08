@@ -593,7 +593,11 @@ p  { margin: 0 0 1em; color: var(--ink-2); }
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
   .hero { padding: 72px 0 56px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
   .hero-copy { order: 1; }
   .hero-visual { order: 2; }
   .split { grid-template-columns: 1fr; gap: 40px; }
