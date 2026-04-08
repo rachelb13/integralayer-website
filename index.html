@@ -147,8 +147,12 @@
           </p>
         </div>
         <div class="visual-stack">
-          <div class="phone-frame small">
-            <img src="assets/img/verification-mobile.png" alt="Verification page preview" />
+          <div class="phone-embed">
+            <iframe
+              src="demo/verification.html"
+              title="IntegraLayer clickable verification page"
+              loading="lazy"
+            ></iframe>
           </div>
         </div>
       </div>
@@ -245,14 +249,72 @@
 
     <!-- CONTACT / CTA -->
     <section id="contact" class="section section-cta">
-      <div class="container narrow center">
-        <p class="eyebrow">Contact</p>
-        <h2>Request a Phase 1 Pilot Discussion</h2>
-        <p class="body">Pilots are approval-led and expect Legal and Compliance involvement.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary btn-lg" href="https://calendly.com/rachel-integralayer/30min" target="_blank" rel="noopener">Book a call</a>
-          <a class="btn btn-ghost btn-lg" href="#demo">See the demo</a>
+      <div class="container narrow">
+        <div class="center">
+          <p class="eyebrow">Contact</p>
+          <h2>Request a Phase 1 Pilot Discussion</h2>
+          <p class="body">Pilots are approval-led and expect Legal and Compliance involvement.</p>
         </div>
+
+        <form
+          class="contact-form"
+          action="https://formsubmit.co/rachel@integralayer.io"
+          method="POST"
+        >
+          <!-- FormSubmit config -->
+          <input type="hidden" name="_subject" value="New pilot inquiry — IntegraLayer" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="true" />
+          <input type="hidden" name="_next" value="https://rachelb13.github.io/integralayer-website/?sent=1#contact" />
+          <!-- honeypot -->
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name">First Name <span class="req">*</span></label>
+              <input id="first-name" name="First Name" type="text" required />
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name <span class="req">*</span></label>
+              <input id="last-name" name="Last Name" type="text" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email <span class="req">*</span></label>
+              <input id="email" name="Email" type="email" required />
+            </div>
+            <div class="form-group">
+              <label for="company">Company name <span class="req">*</span></label>
+              <input id="company" name="Company" type="text" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reason">Reason For Inquiry <span class="req">*</span></label>
+            <select id="reason" name="Reason For Inquiry" required>
+              <option value="">— Select one —</option>
+              <option>Phase 1 Pilot Discussion</option>
+              <option>Certification body / Standards organization</option>
+              <option>Legal or Compliance inquiry</option>
+              <option>Press or analyst inquiry</option>
+              <option>Partnership</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Leave us a message</label>
+            <textarea id="message" name="Message" rows="5" placeholder="Tell us a bit about your certification program and what you'd like to discuss."></textarea>
+          </div>
+
+          <div class="form-submit-row">
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            <a class="btn btn-ghost btn-lg" href="https://calendly.com/rachel-integralayer/30min" target="_blank" rel="noopener">Or book a call</a>
+          </div>
+          <p class="form-note">By submitting, you agree to be contacted about IntegraLayer. We don't share your information.</p>
+        </form>
       </div>
     </section>
   </main>
