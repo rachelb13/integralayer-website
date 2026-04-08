@@ -21,7 +21,7 @@
         <a href="#who-we-are">Who We Are</a>
         <a href="#how-it-works">How It Works</a>
         <a href="#verification-page">Verification Page</a>
-        <a href="demo/index.html">Demo</a>
+        <a href="#demo">Demo</a>
         <a href="#who-its-for">Who It's For</a>
         <a href="#neutrality">Neutrality</a>
         <a href="#contact">Contact</a>
@@ -43,7 +43,7 @@
           <p class="lede">Neutral infrastructure for public certification verification.</p>
           <div class="hero-ctas">
             <a class="btn btn-primary" href="https://calendly.com/rachel-integralayer/30min" target="_blank" rel="noopener">Request Pilot</a>
-            <a class="btn btn-ghost" href="demo/index.html">Try the demo →</a>
+            <a class="btn btn-ghost" href="#demo">Try the demo →</a>
           </div>
           <ul class="hero-bullets">
             <li>Immutable, time-stamped proof</li>
@@ -145,13 +145,49 @@
           <p class="body muted">
             Intended for customers, regulators, auditors, and the public.
           </p>
-          <a class="btn btn-primary" href="demo/index.html">Try it yourself →</a>
-          <p class="fineprint">No account needed. Full issuer dashboard available on desktop only.</p>
         </div>
         <div class="visual-stack">
           <div class="phone-frame small">
             <img src="assets/img/verification-mobile.png" alt="Verification page preview" />
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN INTERACTIVE DEMO -->
+    <section id="demo" class="section section-alt">
+      <div class="container">
+        <div class="demo-head center">
+          <p class="eyebrow">Interactive Prototype</p>
+          <h2>Try it yourself. No account needed.</h2>
+          <p class="section-lede">A live, clickable walk-through of the issuer dashboard and public verification page. Sign in, issue a certificate, watch it get hashed and anchored, then view the public page a scanner would see.</p>
+        </div>
+
+        <div class="browser-mock">
+          <div class="browser-bar">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <div class="browser-url">
+              <span class="lock">🔒</span>
+              <span>app.integralayer.io</span>
+            </div>
+          </div>
+          <iframe
+            class="prototype-frame"
+            src="demo/prototype.html"
+            title="IntegraLayer interactive prototype"
+            loading="lazy"
+          ></iframe>
+        </div>
+
+        <p class="demo-fineprint center">
+          Full issuer dashboard experience. No account required — click anywhere to explore.
+          <a href="demo/prototype.html" target="_blank" rel="noopener">Open in a new tab ↗</a>
+        </p>
+
+        <div class="center" style="margin-top: 28px;">
+          <a class="btn btn-primary btn-lg" href="https://calendly.com/rachel-integralayer/30min" target="_blank" rel="noopener">Book a call to see it with your data</a>
         </div>
       </div>
     </section>
@@ -215,7 +251,7 @@
         <p class="body">Pilots are approval-led and expect Legal and Compliance involvement.</p>
         <div class="cta-row">
           <a class="btn btn-primary btn-lg" href="https://calendly.com/rachel-integralayer/30min" target="_blank" rel="noopener">Book a call</a>
-          <a class="btn btn-ghost btn-lg" href="demo/index.html">See the demo</a>
+          <a class="btn btn-ghost btn-lg" href="#demo">See the demo</a>
         </div>
       </div>
     </section>

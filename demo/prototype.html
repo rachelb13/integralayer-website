@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B1F3A;
+  --navy-mid:#1A3A5C;
+  --blue:#1E6FBF;
+  --blue-light:#3B8ED4;
+  --teal:#0F9478;
+  --teal-light:#12B090;
+  --bg:#F4F7FA;
+  --white:#FFFFFF;
+  --border:#D0DDE8;
+  --text:#0B1F3A;
+  --text-mid:#3A5068;
+  --text-muted:#6B8299;
+  --font:'DM Sans',system-ui,sans-serif;
+  --mono:'DM Mono',monospace;
+  --display:'Playfair Display',Georgia,serif;
+}
+html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* ── SCREENS ── */
+.screen{display:none;min-height:100vh}
+.screen.active{display:block}
+
+/* ── LOGIN ── */
+#screen-login{background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 1rem;min-height:100vh}
+#screen-login.active{display:flex}
+.login-logo{text-align:center;margin-bottom:2.5rem}
+.login-logo .wordmark{font-family:var(--display);font-size:28px;color:#fff;letter-spacing:-0.5px}
+.login-logo .tagline{font-size:12px;color:rgba(255,255,255,0.45);margin-top:5px;font-style:italic}
+.login-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:2rem;width:100%;max-width:380px}
+.login-card h2{color:#fff;font-size:16px;font-weight:500;margin-bottom:1.5rem}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:12px;color:rgba(255,255,255,0.55);margin-bottom:6px}
+.form-group input{width:100%;padding:10px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:8px;color:#fff;font-size:14px;font-family:var(--font)}
+.form-group input:focus{outline:none;border-color:#3B8ED4}
+.login-note{font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:1rem}
+
+/* ── APP SHELL ── */
+.app-layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+.sidebar{background:var(--navy);display:flex;flex-direction:column}
+.sidebar-logo{padding:1.25rem 1.25rem 1rem;border-bottom:1px solid rgba(255,255,255,0.07)}
+.sidebar-logo .mark{font-family:var(--display);font-size:17px;color:#fff}
+.sidebar-logo .sub{font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px}
+.sidebar-tenant{padding:0.75rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:8px}
+.tenant-icon{width:28px;height:28px;border-radius:6px;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0}
+.tenant-name{font-size:12px;color:rgba(255,255,255,0.8);font-weight:500}
+.tenant-role{font-size:10px;color:rgba(255,255,255,0.38)}
+.sidebar-nav{padding:1rem 0;flex:1}
+.nav-item{display:flex;align-items:center;gap:10px;padding:8px 1.25rem;font-size:13px;color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.15s;border-left:2px solid transparent}
+.nav-item:hover{color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.05)}
+.nav-item.active{color:#fff;background:rgba(255,255,255,0.08);border-left-color:var(--teal-light)}
+.sidebar-footer{padding:1rem 1.25rem;border-top:1px solid rgba(255,255,255,0.07)}
+.logout-btn{font-size:12px;color:rgba(255,255,255,0.3);cursor:pointer;display:flex;align-items:center;gap:6px}
+.logout-btn:hover{color:rgba(255,255,255,0.65)}
+
+/* ── MAIN CONTENT ── */
+.main-content{background:var(--bg);overflow-y:auto}
+.page-header{padding:1.5rem 2rem 1rem;border-bottom:1px solid var(--border);background:var(--white);display:flex;align-items:center;justify-content:space-between}
+.page-title{font-size:18px;font-weight:600;color:var(--text)}
+.page-subtitle{font-size:13px;color:var(--text-muted);margin-top:2px}
+.btn-create{padding:8px 16px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font);display:flex;align-items:center;gap:6px}
+.btn-create:hover{background:var(--navy-mid)}
+.inner-page{display:none}
+.inner-page.active{display:block}
+
+/* ── STATS ── */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;display:flex;flex-direction:column;min-height:88px}
+.stat-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;flex:1;padding-bottom:8px}
+.stat-value{font-size:26px;font-weight:600;color:var(--text);line-height:1}
+.stat-sub{font-size:11px;color:var(--teal);margin-top:4px}
+
+/* ── TABLE ── */
+.cert-table-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.table-toolbar{padding:0.875rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.table-toolbar-title{font-size:13px;font-weight:500;color:var(--text)}
+.search-input{padding:6px 12px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--text);background:var(--bg);font-family:var(--font);width:200px}
+.search-input:focus{outline:none;border-color:var(--blue)}
+table{width:100%;border-collapse:collapse}
+thead tr{background:var(--bg)}
+th{font-size:11px;font-weight:500;color:var(--text-muted);text-align:left;padding:8px 1.25rem;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:0.4px}
+td{font-size:13px;color:var(--text-mid);padding:10px 1.25rem;border-bottom:1px solid rgba(208,221,232,0.45)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(30,111,191,0.03);cursor:pointer}
+.status-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}
+.status-valid{background:#E6F4EE;color:#0F6B3A}
+.status-expired{background:#FEF3CD;color:#8A5A00}
+.status-revoked{background:#FDECEA;color:#A32D2D}
+.cert-id-mono{font-family:var(--mono);font-size:11px;color:var(--text-muted)}
+.action-link{color:var(--blue);font-size:12px;cursor:pointer}
+.action-link:hover{text-decoration:underline}
+
+/* ── CREATE FORM ── */
+.form-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.25rem}
+.form-card-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-field label{display:block;font-size:12px;color:var(--text-muted);margin-bottom:5px;font-weight:500}
+.form-field input,.form-field select{width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text);background:#fff;font-family:var(--font)}
+.form-field input:focus,.form-field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,111,191,0.1)}
+.form-field.full{grid-column:1/-1}
+.combo-select{width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text);background:#fff;font-family:var(--font);cursor:pointer}
+.combo-select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,111,191,0.1)}
+.combo-new-row{display:none;margin-top:6px;gap:6px}
+.combo-new-row.show{display:flex}
+.combo-new-input{flex:1;padding:7px 10px;border:1px solid var(--blue);border-radius:7px;font-size:13px;color:var(--text);font-family:var(--font)}
+.combo-new-input:focus{outline:none}
+.combo-add-btn{padding:7px 12px;background:var(--navy);color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font)}
+.combo-add-btn:hover{background:var(--navy-mid)}
+.combo-cancel-btn{padding:7px 10px;background:none;border:1px solid var(--border);border-radius:7px;font-size:12px;color:var(--text-muted);cursor:pointer;font-family:var(--font)}
+.upload-zone{border:2px dashed var(--border);border-radius:10px;padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s}
+.upload-zone:hover{border-color:var(--blue);background:rgba(30,111,191,0.03)}
+.upload-zone.has-file{border-color:var(--teal);background:rgba(15,148,120,0.04)}
+.upload-zone.has-file .upload-zone-text{color:var(--teal);font-weight:500}
+.upload-zone-icon{font-size:24px;margin-bottom:8px}
+.upload-zone-text{font-size:13px;color:var(--text-muted)}
+.upload-zone-sub{font-size:11px;color:var(--text-muted);margin-top:4px}
+.form-actions{display:flex;align-items:center;gap:0.75rem;padding-top:0.5rem}
+.btn-submit{padding:10px 24px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--font)}
+.btn-submit:hover{background:var(--navy-mid)}
+.btn-cancel-form{padding:10px 16px;background:none;border:1px solid var(--border);border-radius:8px;font-size:14px;color:var(--text-muted);cursor:pointer;font-family:var(--font)}
+.btn-cancel-form:hover{background:var(--bg)}
+.hash-preview{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;font-family:var(--mono);font-size:11px;color:var(--text-muted);word-break:break-all}
+
+/* ── SUCCESS ── */
+.success-wrap{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;max-width:480px;margin:2rem auto}
+.success-icon{width:56px;height:56px;background:rgba(15,148,120,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:24px}
+.success-title{font-size:18px;font-weight:600;color:var(--text);margin-bottom:0.5rem}
+.success-sub{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:1.5rem}
+.proof-block{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:left;margin-bottom:1.25rem}
+.proof-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;gap:1rem}
+.proof-row:last-child{margin-bottom:0}
+.proof-label{font-size:11px;color:var(--text-muted);font-weight:500;flex-shrink:0;padding-top:1px}
+.proof-value{font-family:var(--mono);font-size:10px;color:var(--blue);word-break:break-all;text-align:right}
+.qr-box{width:120px;height:120px;background:var(--bg);border:1px solid var(--border);border-radius:10px;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.success-actions{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap}
+.btn-dl{padding:8px 16px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font)}
+.btn-view{padding:8px 16px;background:none;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text-mid);cursor:pointer;font-family:var(--font)}
+.btn-view:hover{border-color:var(--blue);color:var(--blue)}
+
+/* ── VERIFY PAGE ── */
+#screen-verify{background:var(--bg)}
+#screen-verify.active{display:block}
+.back-bar{padding:0.75rem 2rem;background:var(--white);border-bottom:1px solid var(--border);cursor:pointer;font-size:13px;color:var(--blue)}
+.back-bar:hover{text-decoration:underline}
+.verify-topbar{background:var(--navy);padding:0.75rem 1.5rem;font-size:13px;color:rgba(255,255,255,0.55)}
+.verify-topbar strong{color:#fff}
+.verify-status-bar{padding:0.625rem 1.5rem;display:flex;align-items:center;gap:8px;font-size:13px;color:#fff;font-weight:500}
+.verify-status-bar.valid{background:var(--teal)}
+.verify-status-bar.expired{background:#8A5A00}
+.verify-status-bar.revoked{background:#A32D2D}
+.verify-body{max-width:600px;margin:0 auto;padding:2rem 1.5rem}
+.verify-issuer-block{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem}
+.issuer-logo{width:44px;height:44px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#fff;text-decoration:none;flex-shrink:0}
+.issuer-name-link{font-size:15px;font-weight:600;color:var(--text);text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.issuer-name-link:hover{color:var(--blue)}
+.issuer-sub{font-size:12px;color:var(--text-muted)}
+.verify-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.25rem;margin-bottom:1rem}
+.verify-card-title{font-size:11px;font-weight:500;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.875rem}
+.verify-field-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(208,221,232,0.4)}
+.verify-field-row:last-child{border-bottom:none}
+.verify-field-label{font-size:12px;color:var(--text-muted)}
+.verify-field-value{font-size:13px;color:var(--text);font-weight:500}
+.verify-field-link{font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:3px}
+.verify-field-link:hover{text-decoration:underline}
+.blockchain-row{background:var(--bg);border-radius:8px;padding:0.75rem;margin-top:0.5rem}
+.blockchain-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px}
+.blockchain-hash{font-family:var(--mono);font-size:10px;color:var(--blue);word-break:break-all}
+.verify-pdf-link{display:flex;align-items:center;gap:8px;padding:0.75rem 1rem;background:rgba(30,111,191,0.06);border:1px solid rgba(30,111,191,0.2);border-radius:8px;color:var(--blue);font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;margin-top:0.5rem}
+.verify-footer{text-align:center;padding:1.5rem;border-top:1px solid var(--border);margin-top:1rem}
+.verify-footer-logo{font-size:12px;color:var(--text-muted)}
+.verify-footer-logo a{color:var(--navy);font-weight:600;text-decoration:none}
+.verify-footer-logo a:hover{text-decoration:underline}
+.verify-footer-tagline{font-size:10px;color:var(--text-muted);margin-top:3px;font-style:italic}
+
+/* ── REVOKED NOTICE ── */
+.status-notice{border-radius:10px;padding:10px 14px;margin-bottom:12px;display:none}
+.status-notice.show{display:block}
+.status-notice.expired{background:#FEF3CD;border:1px solid #EF9F27}
+.status-notice.revoked{background:#FDECEA;border:1px solid #F09595}
+.status-notice-title{font-size:13px;font-weight:600;margin-bottom:3px}
+.status-notice.expired .status-notice-title{color:#8A5A00}
+.status-notice.revoked .status-notice-title{color:#A32D2D}
+.status-notice-text{font-size:12px;line-height:1.5}
+.status-notice.expired .status-notice-text{color:#633806}
+.status-notice.revoked .status-notice-text{color:#791F1F}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════
+     LOGIN SCREEN
+════════════════════════════ -->
+<div id="screen-login">
+  <div class="login-logo">
+    <div class="wordmark">IntegraLayer</div>
+    <div class="tagline">Trust isn't claimed. It's proven.</div>
+  </div>
+  <div class="login-card">
+    <h2>Sign in to your account</h2>
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" value="admin@roch.org">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" value="••••••••">
+    </div>
+    <button id="signin-btn" style="display:block;width:100%;padding:13px;margin-top:0.75rem;background:#2578CC;border:none;border-radius:8px;color:#ffffff;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;letter-spacing:0.2px">Sign in &#8594;</button>
+    <div class="login-note">Secured by IntegraLayer · Multi-tenant verified access</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     DASHBOARD APP
+════════════════════════════ -->
+<div id="screen-app" style="display:none">
+  <div class="app-layout">
+
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="mark">IntegraLayer</div>
+        <div class="sub">Integrity Infrastructure</div>
+      </div>
+      <div class="sidebar-tenant">
+        <div class="tenant-icon">RC</div>
+        <div>
+          <div class="tenant-name">Roch Certification</div>
+          <div class="tenant-role">Admin</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-item active" id="nav-certs" onclick="showPage('certs')">
+          <span>▦</span> Certificates
+        </div>
+        <div class="nav-item" id="nav-create" onclick="showPage('create')">
+          <span>＋</span> Issue Certificate
+        </div>
+        <div class="nav-item" onclick="goTo('verify')">
+          <span>◎</span> Verification Portal
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="logout-btn" onclick="goTo('login')">↩ Sign out</div>
+      </div>
+    </div>
+
+    <div class="main-content">
+
+      <!-- CERTIFICATES PAGE -->
+      <div class="inner-page active" id="page-certs">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Certificates</div>
+            <div class="page-subtitle">Manage and monitor issued certificates</div>
+          </div>
+          <button class="btn-create" onclick="showPage('create')">＋ Issue Certificate</button>
+        </div>
+        <div style="padding:1.5rem 2rem">
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-label">Total issued</div>
+              <div class="stat-value" id="total-count">4</div>
+              <div class="stat-sub">All time</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Active</div>
+              <div class="stat-value" id="active-count">3</div>
+              <div class="stat-sub">Valid today</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">On-chain proofs</div>
+              <div class="stat-value" id="chain-count">4</div>
+              <div class="stat-sub">Anchored</div>
+            </div>
+          </div>
+          <div class="cert-table-wrap">
+            <div class="table-toolbar">
+              <div class="table-toolbar-title">Issued certificates</div>
+              <input class="search-input" placeholder="Search by name, ID, type..." oninput="filterTable(this.value)">
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Certificate ID</th>
+                  <th>Issued To</th>
+                  <th>Type</th>
+                  <th>Issued</th>
+                  <th>Expires</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="cert-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ISSUE CERTIFICATE PAGE -->
+      <div class="inner-page" id="page-create">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Issue new certificate</div>
+            <div class="page-subtitle">Certificate will be hashed and anchored on-chain</div>
+          </div>
+        </div>
+        <div style="padding:1.5rem 2rem">
+          <div class="form-card">
+            <div class="form-card-title">Certificate details</div>
+            <div class="form-grid">
+              <div class="form-field full">
+                <label>Certificate title</label>
+                <select class="combo-select" id="f-title" onchange="handleCombo(this,'title-new-row')">
+                  <option value="">— Select a title —</option>
+                  <option>Dog-Friendly Hotel Certification</option>
+                  <option>Pet Welfare Compliance Certificate</option>
+                  <option>Hospitality Standards Certificate</option>
+                  <option value="__new__">+ Add new title...</option>
+                </select>
+                <div class="combo-new-row" id="title-new-row">
+                  <input class="combo-new-input" id="title-new-input" placeholder="Enter new certificate title">
+                  <button class="combo-add-btn" onclick="addComboOption('f-title','title-new-input','title-new-row')">Add</button>
+                  <button class="combo-cancel-btn" onclick="cancelCombo('f-title','title-new-row')">Cancel</button>
+                </div>
+              </div>
+              <div class="form-field">
+                <label>Certificate type</label>
+                <select id="f-type">
+                  <option>Dog-Friendly Accommodation</option>
+                  <option>Pet Welfare Compliance</option>
+                  <option>Hospitality Standards</option>
+                  <option>Custom</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Issue date</label>
+                <input type="date" id="f-issued" value="2026-03-22">
+              </div>
+              <div class="form-field full">
+                <label>Issued to (business / entity name)</label>
+                <select class="combo-select" id="f-issuedto" onchange="handleCombo(this,'biz-new-row')">
+                  <option value="">— Select a business —</option>
+                  <option>The Alpine Retreat</option>
+                  <option>Lakeside Inn &amp; Suites</option>
+                  <option>Maplewood Country Lodge</option>
+                  <option>Harbor Crest Hotel</option>
+                  <option>Pawsome Stays Hotel Group</option>
+                  <option value="__new__">+ Add new business...</option>
+                </select>
+                <div class="combo-new-row" id="biz-new-row">
+                  <input class="combo-new-input" id="biz-new-input" placeholder="Enter business name">
+                  <button class="combo-add-btn" onclick="addComboOption('f-issuedto','biz-new-input','biz-new-row')">Add</button>
+                  <button class="combo-cancel-btn" onclick="cancelCombo('f-issuedto','biz-new-row')">Cancel</button>
+                </div>
+              </div>
+              <div class="form-field full">
+                <label>Business website</label>
+                <input type="text" id="f-bizurl" placeholder="https://...">
+              </div>
+              <div class="form-field">
+                <label>Expiration date</label>
+                <input type="date" id="f-expires" value="2027-03-22">
+              </div>
+              <div class="form-field full">
+                <label>Notes (optional)</label>
+                <input type="text" id="f-notes" placeholder="Add any additional notes...">
+              </div>
+            </div>
+          </div>
+          <div class="form-card">
+            <div class="form-card-title">Certificate document</div>
+            <div class="upload-zone" id="upload-zone" onclick="simulateUpload()">
+              <div class="upload-zone-icon" id="upload-icon">📄</div>
+              <div class="upload-zone-text" id="upload-text">Click to upload certificate PDF</div>
+              <div class="upload-zone-sub" id="upload-sub">PDF only · Max 10MB</div>
+            </div>
+          </div>
+          <div class="form-card">
+            <div class="form-card-title">Cryptographic proof preview</div>
+            <div style="font-size:12px;color:#6B8299;margin-bottom:8px">SHA-256 hash computed on submission and anchored on-chain.</div>
+            <div class="hash-preview">a3f8b2e1c7d94056f2a381be0c4d79fa3120ed5c87b6a249cf3e5d8071b2940f</div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-submit" onclick="submitCert()">Issue &amp; Anchor to Blockchain</button>
+            <button class="btn-cancel-form" onclick="showPage('certs')">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUCCESS PAGE -->
+      <div class="inner-page" id="page-success">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Certificate issued</div>
+            <div class="page-subtitle">Anchored on-chain · QR code ready</div>
+          </div>
+        </div>
+        <div style="padding:1.5rem 2rem">
+          <div class="success-wrap">
+            <div class="success-icon">✓</div>
+            <div class="success-title">Certificate successfully issued</div>
+            <div class="success-sub">Hashed, recorded on-chain, and QR verification code generated.</div>
+            <div style="margin-bottom:1rem">
+              <div style="font-size:11px;color:#6B8299;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">QR Code</div>
+              <div class="qr-box">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+                  <rect width="100" height="100" fill="white"/>
+                  <g fill="#0B1F3A">
+                    <rect x="5" y="5" width="30" height="30" rx="2"/><rect x="8" y="8" width="24" height="24" rx="1" fill="white"/><rect x="11" y="11" width="18" height="18" rx="1"/>
+                    <rect x="65" y="5" width="30" height="30" rx="2"/><rect x="68" y="8" width="24" height="24" rx="1" fill="white"/><rect x="71" y="11" width="18" height="18" rx="1"/>
+                    <rect x="5" y="65" width="30" height="30" rx="2"/><rect x="8" y="68" width="24" height="24" rx="1" fill="white"/><rect x="11" y="71" width="18" height="18" rx="1"/>
+                    <rect x="40" y="5" width="5" height="5"/><rect x="50" y="5" width="5" height="5"/><rect x="55" y="10" width="5" height="5"/><rect x="45" y="15" width="5" height="5"/><rect x="55" y="20" width="5" height="5"/><rect x="40" y="25" width="5" height="5"/><rect x="50" y="30" width="10" height="5"/>
+                    <rect x="40" y="40" width="5" height="5"/><rect x="50" y="40" width="5" height="5"/><rect x="60" y="40" width="5" height="5"/><rect x="70" y="40" width="5" height="5"/><rect x="80" y="40" width="5" height="5"/><rect x="90" y="40" width="5" height="5"/>
+                    <rect x="5" y="40" width="5" height="5"/><rect x="15" y="40" width="5" height="5"/><rect x="25" y="40" width="5" height="5"/><rect x="5" y="50" width="5" height="5"/><rect x="20" y="50" width="5" height="5"/><rect x="30" y="50" width="5" height="5"/>
+                    <rect x="40" y="50" width="5" height="5"/><rect x="55" y="50" width="5" height="5"/><rect x="65" y="50" width="5" height="5"/><rect x="75" y="55" width="5" height="5"/><rect x="85" y="50" width="5" height="5"/>
+                    <rect x="40" y="60" width="5" height="5"/><rect x="50" y="60" width="10" height="5"/><rect x="65" y="60" width="5" height="5"/><rect x="80" y="60" width="5" height="5"/><rect x="90" y="60" width="5" height="5"/>
+                    <rect x="45" y="65" width="5" height="5"/><rect x="60" y="65" width="5" height="5"/><rect x="70" y="70" width="5" height="5"/><rect x="80" y="65" width="5" height="5"/>
+                    <rect x="40" y="70" width="5" height="5"/><rect x="55" y="75" width="5" height="5"/><rect x="65" y="75" width="5" height="5"/><rect x="85" y="75" width="5" height="5"/>
+                    <rect x="45" y="80" width="5" height="5"/><rect x="60" y="80" width="5" height="5"/><rect x="70" y="80" width="5" height="5"/><rect x="80" y="80" width="5" height="5"/><rect x="90" y="80" width="5" height="5"/>
+                    <rect x="40" y="85" width="5" height="5"/><rect x="55" y="85" width="5" height="5"/><rect x="65" y="90" width="5" height="5"/><rect x="75" y="90" width="5" height="5"/>
+                  </g>
+                </svg>
+              </div>
+              <div style="font-size:11px;color:#6B8299;margin-top:6px">verify.integralayer.com/c/<span style="font-family:monospace;color:#1E6FBF" id="cert-public-id">IL-2026-0005</span></div>
+            </div>
+            <div class="proof-block">
+              <div class="proof-row"><span class="proof-label">Cert ID</span><span class="proof-value" id="s-cert-id">IL-2026-0005</span></div>
+              <div class="proof-row"><span class="proof-label">SHA-256 hash</span><span class="proof-value">a3f8b2e1c7d94056f2a381be0c4d79fa3120ed5c87b6a249cf3e5d8071b2940f</span></div>
+              <div class="proof-row"><span class="proof-label">TX ID</span><span class="proof-value">5vD8rKpQmT2eNxJ9aWcBhLfY3ZuRo7iS1MgXnEkPd4Cv6bFw</span></div>
+              <div class="proof-row"><span class="proof-label">Block time</span><span class="proof-value" id="s-block-time">2026-03-22 14:32:07 UTC</span></div>
+            </div>
+            <div class="success-actions">
+              <button class="btn-dl">⬇ Download QR</button>
+              <button class="btn-view" onclick="goTo('verify')">View public page →</button>
+              <button class="btn-cancel-form" onclick="showPage('certs')">Back to dashboard</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     VERIFICATION PAGE
+════════════════════════════ -->
+<div id="screen-verify" style="display:none">
+  <div class="back-bar" onclick="goTo('dashboard')">← Back to dashboard</div>
+  <div class="verify-topbar">Powered by <strong>IntegraLayer</strong> · Neutral Integrity Infrastructure</div>
+  <div class="verify-status-bar valid" id="verify-status-bar">
+    <span id="verify-status-text">✓ Certificate verified — Valid &amp; Active</span>
+  </div>
+  <div class="verify-body">
+
+    <div class="status-notice expired" id="expired-notice">
+      <div class="status-notice-title">Certificate expired</div>
+      <div class="status-notice-text">This certificate expired on March 1, 2026. Please contact the issuing body to request renewal.</div>
+    </div>
+    <div class="status-notice revoked" id="revoked-notice">
+      <div class="status-notice-title">Certificate revoked</div>
+      <div class="status-notice-text">This certificate has been revoked by the issuing body and is no longer valid for any purpose.</div>
+    </div>
+
+    <div class="verify-issuer-block">
+      <a href="https://roch.org" class="issuer-logo">RC</a>
+      <div>
+        <a href="https://roch.org" class="issuer-name-link">Roch Certification Body <span style="font-size:11px;opacity:0.5">↗</span></a>
+        <div class="issuer-sub">Accredited certification authority · Dog-Friendly Hospitality Standards</div>
+      </div>
+    </div>
+
+    <div class="verify-card">
+      <div class="verify-card-title">Certificate information</div>
+      <div class="verify-field-row">
+        <span class="verify-field-label">Certificate title</span>
+        <span class="verify-field-value" id="v-title">Dog-Friendly Hotel Certification</span>
+      </div>
+      <div class="verify-field-row">
+        <span class="verify-field-label">Issued to</span>
+        <a href="https://pawsomestays.com" class="verify-field-link" id="v-issuedto">Pawsome Stays Hotel Group <span style="font-size:10px;opacity:0.5">↗</span></a>
+      </div>
+      <div class="verify-field-row">
+        <span class="verify-field-label">Certificate type</span>
+        <span class="verify-field-value" id="v-type">Dog-Friendly Accommodation</span>
+      </div>
+      <div class="verify-field-row">
+        <span class="verify-field-label">Issue date</span>
+        <span class="verify-field-value" id="v-issued">January 15, 2026</span>
+      </div>
+      <div class="verify-field-row">
+        <span class="verify-field-label">Expiration date</span>
+        <span class="verify-field-value" id="v-expires">January 15, 2027</span>
+      </div>
+      <div class="verify-field-row">
+        <span class="verify-field-label">Certificate ID</span>
+        <span class="verify-field-value" id="v-id" style="font-family:monospace;font-size:12px">IL-2026-0001</span>
+      </div>
+    </div>
+
+    <div class="verify-card">
+      <div class="verify-card-title">Blockchain proof</div>
+      <div class="blockchain-row">
+        <div class="blockchain-label">SHA-256 hash</div>
+        <div class="blockchain-hash">a3f8b2e1c7d94056f2a381be0c4d79fa3120ed5c87b6a249cf3e5d8071b2940f</div>
+      </div>
+      <div class="blockchain-row" style="margin-top:8px">
+        <div class="blockchain-label">Transaction ID</div>
+        <div class="blockchain-hash">5vD8rKpQmT2eNxJ9aWcBhLfY3ZuRo7iS1MgXnEkPd4Cv6bFw</div>
+      </div>
+      <div style="margin-top:10px;padding-top:8px;border-top:1px solid #D0DDE8;font-size:11px;color:#6B8299">
+        Anchored January 15, 2026 · 09:14:22 UTC
+      </div>
+    </div>
+
+    <div class="verify-card">
+      <div class="verify-card-title">Certificate document</div>
+      <a class="verify-pdf-link">
+        <span>📄</span>
+        <span id="v-pdf-name">Download certified PDF — The Alpine Retreat.pdf</span>
+      </a>
+    </div>
+
+    <div class="verify-footer">
+      <div class="verify-footer-logo">Verified by <a href="https://integralayer.io">IntegraLayer</a> · Neutral Integrity Infrastructure</div>
+      <div class="verify-footer-tagline">Trust isn't claimed. It's proven. / The truth is verifiable.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const certs = [
+  {id:'IL-2026-0001', title:'Dog-Friendly Hotel Certification', issuedTo:'The Alpine Retreat',      bizUrl:'https://alpineretreat.com',   type:'Dog-Friendly Accommodation', issued:'2026-01-15', expires:'2027-01-15', status:'valid'},
+  {id:'IL-2026-0002', title:'Pet Welfare Compliance Certificate', issuedTo:'Lakeside Inn & Suites', bizUrl:'https://lakesideinn.com',      type:'Pet Welfare Compliance',     issued:'2026-02-03', expires:'2027-02-03', status:'valid'},
+  {id:'IL-2026-0003', title:'Hospitality Standards Certificate',  issuedTo:'Maplewood Country Lodge',bizUrl:'https://maplewoodlodge.com', type:'Hospitality Standards',      issued:'2025-06-10', expires:'2026-03-01', status:'expired'},
+  {id:'IL-2026-0004', title:'Dog-Friendly Hotel Certification',   issuedTo:'Harbor Crest Hotel',    bizUrl:'https://harborcrest.com',     type:'Dog-Friendly Accommodation', issued:'2026-03-01', expires:'2027-03-01', status:'valid'}
+];
+
+let currentCert = certs[0];
+
+function fmtDate(d){
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const parts=d.split('-');
+  return months[parseInt(parts[1])-1]+' '+parseInt(parts[2])+', '+parts[0];
+}
+
+function renderTable(data){
+  document.getElementById('cert-tbody').innerHTML = data.map(c => `
+    <tr onclick="viewCert('${c.id}')">
+      <td><span class="cert-id-mono">${c.id}</span></td>
+      <td>${c.issuedTo}</td>
+      <td>${c.type}</td>
+      <td>${c.issued}</td>
+      <td>${c.expires}</td>
+      <td><span class="status-pill status-${c.status}">${c.status==='valid'?'✓ Valid':c.status==='expired'?'⚠ Expired':'✕ Revoked'}</span></td>
+      <td><span class="action-link">View →</span></td>
+    </tr>`).join('');
+}
+
+function filterTable(v){
+  renderTable(certs.filter(c =>
+    c.id.toLowerCase().includes(v.toLowerCase()) ||
+    c.issuedTo.toLowerCase().includes(v.toLowerCase()) ||
+    c.type.toLowerCase().includes(v.toLowerCase())
+  ));
+}
+
+function updateStats(){
+  document.getElementById('total-count').textContent = certs.length;
+  document.getElementById('active-count').textContent = certs.filter(c=>c.status==='valid').length;
+  document.getElementById('chain-count').textContent = certs.length;
+}
+
+renderTable(certs);
+updateStats();
+
+function viewCert(id){
+  currentCert = certs.find(c=>c.id===id) || certs[0];
+  const c = currentCert;
+
+  document.getElementById('v-title').textContent = c.title;
+  document.getElementById('v-issuedto').innerHTML = c.issuedTo+' <span style="font-size:10px;opacity:0.5">↗</span>';
+  document.getElementById('v-issuedto').href = c.bizUrl;
+  document.getElementById('v-type').textContent = c.type;
+  document.getElementById('v-issued').textContent = fmtDate(c.issued);
+  document.getElementById('v-expires').textContent = fmtDate(c.expires);
+  document.getElementById('v-id').textContent = c.id;
+  document.getElementById('v-pdf-name').textContent = 'Download certified PDF — '+c.issuedTo+'.pdf';
+
+  const bar = document.getElementById('verify-status-bar');
+  const txt = document.getElementById('verify-status-text');
+  const exp = document.getElementById('expired-notice');
+  const rev = document.getElementById('revoked-notice');
+  bar.className = 'verify-status-bar';
+  exp.classList.remove('show');
+  rev.classList.remove('show');
+
+  if(c.status==='valid'){
+    bar.classList.add('valid');
+    txt.innerHTML = '✓ Certificate verified — Valid &amp; Active';
+  } else if(c.status==='expired'){
+    bar.classList.add('expired');
+    txt.textContent = '⚠ Certificate expired — No longer valid';
+    exp.classList.add('show');
+  } else {
+    bar.classList.add('revoked');
+    txt.textContent = '✕ Certificate revoked — Invalid';
+    rev.classList.add('show');
+  }
+
+  goTo('verify');
+}
+
+function goTo(s){
+  document.getElementById('screen-login').style.display='none';
+  document.getElementById('screen-app').style.display='none';
+  document.getElementById('screen-verify').style.display='none';
+  if(s==='login'){document.getElementById('screen-login').style.display='flex';}
+  else if(s==='verify'){document.getElementById('screen-verify').style.display='block';}
+  else{document.getElementById('screen-app').style.display='block';showPage(s==='dashboard'?'certs':s);}
+}
+
+function showPage(p){
+  document.querySelectorAll('.inner-page').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  const nav=document.getElementById('nav-'+p);
+  if(nav)nav.classList.add('active');
+}
+
+function handleCombo(sel,rowId){
+  if(sel.value==='__new__'){document.getElementById(rowId).classList.add('show');sel.value='';}
+  else{document.getElementById(rowId).classList.remove('show');}
+}
+function addComboOption(selId,inputId,rowId){
+  const sel=document.getElementById(selId);
+  const input=document.getElementById(inputId);
+  const val=input.value.trim();
+  if(!val)return;
+  const opt=document.createElement('option');
+  opt.value=val;opt.textContent=val;
+  sel.insertBefore(opt,sel.lastElementChild);
+  sel.value=val;input.value='';
+  document.getElementById(rowId).classList.remove('show');
+}
+function cancelCombo(selId,rowId){
+  document.getElementById(selId).value='';
+  document.getElementById(rowId).classList.remove('show');
+}
+
+let uploaded=false;
+function simulateUpload(){
+  if(!uploaded){
+    uploaded=true;
+    document.getElementById('upload-icon').textContent='✓';
+    document.getElementById('upload-text').textContent='certificate_roch_pawsome.pdf — uploaded';
+    document.getElementById('upload-sub').textContent='3.2 MB · Ready for hashing';
+    document.getElementById('upload-zone').classList.add('has-file');
+  }
+}
+
+function submitCert(){
+  const tSel=document.getElementById('f-title');
+  const bSel=document.getElementById('f-issuedto');
+  const title=tSel.value||'New Certificate';
+  const issuedTo=bSel.value||'New Entity';
+  const newId='IL-2026-000'+(certs.length+1);
+  const now=new Date();
+  document.getElementById('s-cert-id').textContent=newId;
+  document.getElementById('cert-public-id').textContent=newId;
+  document.getElementById('s-block-time').textContent=now.toISOString().replace('T',' ').slice(0,19)+' UTC';
+  certs.push({
+    id:newId, title, issuedTo,
+    bizUrl:document.getElementById('f-bizurl').value||'#',
+    type:document.getElementById('f-type').value,
+    issued:document.getElementById('f-issued').value,
+    expires:document.getElementById('f-expires').value,
+    status:'valid'
+  });
+  updateStats();
+  renderTable(certs);
+  uploaded=false;
+  document.getElementById('upload-icon').textContent='📄';
+  document.getElementById('upload-text').textContent='Click to upload certificate PDF';
+  document.getElementById('upload-sub').textContent='PDF only · Max 10MB';
+  document.getElementById('upload-zone').classList.remove('has-file');
+  showPage('success');
+}
+document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('signin-btn');if(b)b.addEventListener('click',function(){goTo('dashboard');});});
+</script>
+</body>
+</html>
