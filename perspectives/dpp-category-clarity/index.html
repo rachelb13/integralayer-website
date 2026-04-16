@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP Category Clarity — IntegraLayer</title>
+<meta name="description" content="As SMX launches its Digital Material Passport Platform, a category-level question becomes urgent: material identity and certificate verification are two distinct infrastructure layers. IntegraLayer's perspective on the Digital Product Passport category as of April 2026.">
+<meta property="og:title" content="DPP Category Clarity — Material identity vs. certificate verification">
+<meta property="og:description" content="An IntegraLayer perspective on the Digital Product Passport category, April 2026.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://integralayer.io/perspectives/dpp-category-clarity">
+<meta property="article:published_time" content="2026-04-16">
+<meta property="article:author" content="Rachel Buchanan">
+<link rel="icon" type="image/png" href="/assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --midnight-blue: #152B3F;
+    --bright-blue:   #0966F5;
+    --bright-green:  #08C08D;
+    --violet-blue:   #3949AB;
+    --light-grey:    #ECEFF1;
+    --blue-tint:     #E8F0FE;
+    --green-tint:    #E6F9F4;
+    --subtle:        #6B7A8A;
+    --mid:           #3A4A5A;
+    --header-conf:   #88AACC;
+    --off-white:     #FAFBFC;
+    --hairline:      #D8DEE4;
+    --font-display:  "Fraunces", Georgia, serif;
+    --font-brand:    "Inter", system-ui, sans-serif;
+    --font-body:     "DM Sans", system-ui, sans-serif;
+    --font-mono:     "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--mid);
+    background: var(--off-white);
+    line-height: 1.65;
+    font-size: 17px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Atmospheric background texture */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at top left, rgba(9, 102, 245, 0.04), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(8, 192, 141, 0.03), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 1; }
+
+  /* ===== Top nav strip ===== */
+  .nav {
+    border-bottom: 1px solid var(--hairline);
+    background: rgba(250, 251, 252, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .nav-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    color: var(--midnight-blue);
+    text-decoration: none;
+  }
+  .brand .dot { color: var(--bright-green); }
+  .nav-meta {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--subtle);
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 72px 32px 48px;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bright-blue);
+    margin-bottom: 28px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--bright-blue);
+  }
+
+  h1.title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(42px, 6.2vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: var(--midnight-blue);
+    max-width: 14ch;
+    margin-bottom: 28px;
+    font-variation-settings: "opsz" 120;
+  }
+  h1.title em {
+    font-style: italic;
+    color: var(--bright-blue);
+    font-weight: 400;
+  }
+
+  .subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 400;
+    color: var(--mid);
+    max-width: 62ch;
+    line-height: 1.45;
+    margin-bottom: 40px;
+  }
+
+  .byline {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--hairline);
+    font-family: var(--font-body);
+    font-size: 14px;
+  }
+  .byline-item .label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-bottom: 4px;
+  }
+  .byline-item .val {
+    color: var(--midnight-blue);
+    font-weight: 500;
+  }
+  .byline-item .val a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--bright-green); }
+  .byline-item .val a:hover { color: var(--bright-blue); border-color: var(--bright-blue); }
+
+  /* ===== Main article ===== */
+  .article {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px 32px 48px;
+    display: grid;
+    grid-template-columns: 1fr 720px 1fr;
+    gap: 0;
+  }
+  .article > * { grid-column: 2; }
+  .article .full { grid-column: 1 / -1; }
+
+  .article p {
+    font-size: 18px;
+    line-height: 1.72;
+    color: var(--mid);
+    margin-bottom: 22px;
+  }
+  .article p.lede {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--midnight-blue);
+    margin-bottom: 32px;
+    font-variation-settings: "opsz" 96;
+  }
+  .article strong {
+    color: var(--midnight-blue);
+    font-weight: 600;
+  }
+  .article h2 {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    color: var(--midnight-blue);
+    margin: 56px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--bright-blue);
+    max-width: fit-content;
+  }
+
+  /* Drop cap on first paragraph */
+  .article p.first::first-letter {
+    font-family: var(--font-display);
+    float: left;
+    font-size: 72px;
+    line-height: 0.85;
+    padding: 6px 10px 0 0;
+    color: var(--bright-blue);
+    font-weight: 500;
+  }
+
+  /* ===== Comparison section (full-bleed) ===== */
+  .compare-wrap {
+    background: linear-gradient(180deg, var(--off-white) 0%, #F1F4F8 100%);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin: 56px 0;
+    padding: 64px 32px;
+  }
+  .compare-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .compare-label {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bright-blue);
+    margin-bottom: 12px;
+  }
+  .compare-h {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: -0.015em;
+    color: var(--midnight-blue);
+    margin-bottom: 32px;
+    max-width: 20ch;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 36px 32px;
+    border: 1px solid var(--hairline);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .card.smx::before { background: linear-gradient(90deg, #6B7A8A, #88AACC); }
+  .card.integra::before { background: linear-gradient(90deg, var(--bright-blue), var(--bright-green)); }
+
+  .card-title {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .card.smx .card-title { color: var(--subtle); }
+  .card.integra .card-title { color: var(--bright-blue); }
+
+  .card-sub {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--midnight-blue);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .card dl {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    row-gap: 18px;
+    column-gap: 20px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .card dt {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    padding-top: 2px;
+  }
+  .card dd {
+    color: var(--mid);
+  }
+
+  /* ===== Callout ===== */
+  .callout {
+    background: var(--blue-tint);
+    border-left: 4px solid var(--bright-blue);
+    padding: 28px 32px;
+    margin: 48px 0;
+    border-radius: 2px 10px 10px 2px;
+  }
+  .callout h3 {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--midnight-blue);
+    margin-bottom: 12px;
+  }
+  .callout p {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--mid);
+    margin: 0;
+  }
+  .callout p strong { color: var(--midnight-blue); }
+
+  /* ===== Closing banner / tagline ===== */
+  .tagline {
+    background: var(--midnight-blue);
+    padding: 72px 32px;
+    margin: 80px 0 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .tagline::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(9, 102, 245, 0.25), transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(8, 192, 141, 0.18), transparent 50%);
+  }
+  .tagline-inner { position: relative; }
+  .tagline-h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(32px, 5vw, 52px);
+    color: white;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .tagline-sub {
+    font-family: var(--font-body);
+    font-size: clamp(18px, 2.2vw, 24px);
+    color: var(--bright-green);
+    font-weight: 400;
+  }
+
+  /* ===== CTA ===== */
+  .cta {
+    background: white;
+    border-top: 1px solid var(--hairline);
+    padding: 64px 32px;
+  }
+  .cta-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .cta-h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.25;
+    color: var(--midnight-blue);
+    margin-bottom: 12px;
+    max-width: 20ch;
+  }
+  .cta-p {
+    font-size: 16px;
+    color: var(--mid);
+    max-width: 45ch;
+  }
+  .cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 28px;
+    font-family: var(--font-brand);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+  .btn-primary {
+    background: var(--bright-blue);
+    color: white;
+    box-shadow: 0 4px 20px rgba(9, 102, 245, 0.18);
+  }
+  .btn-primary:hover {
+    background: #0854cc;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(9, 102, 245, 0.26);
+  }
+  .btn-secondary {
+    background: white;
+    color: var(--midnight-blue);
+    border: 1px solid var(--hairline);
+  }
+  .btn-secondary:hover {
+    border-color: var(--bright-blue);
+    color: var(--bright-blue);
+  }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* ===== Footer ===== */
+  .foot {
+    background: var(--midnight-blue);
+    color: var(--header-conf);
+    padding: 48px 32px 40px;
+  }
+  .foot-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    font-size: 14px;
+  }
+  .foot-tag {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--bright-green);
+    margin-bottom: 10px;
+  }
+  .foot-meta {
+    color: var(--header-conf);
+    font-size: 13px;
+  }
+  .foot-right { text-align: right; }
+  .foot-right .name {
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .foot-right a {
+    color: var(--bright-green);
+    text-decoration: none;
+    margin-left: 20px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+  .foot-right a:hover { border-color: var(--bright-green); }
+  .foot-right a:first-of-type { margin-left: 0; }
+
+  /* ===== Motion on load (restrained, one orchestrated moment) ===== */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up:nth-child(1) { animation-delay: 0.05s; }
+  .fade-up:nth-child(2) { animation-delay: 0.15s; }
+  .fade-up:nth-child(3) { animation-delay: 0.28s; }
+  .fade-up:nth-child(4) { animation-delay: 0.42s; }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 880px) {
+    .article {
+      grid-template-columns: 1fr;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .article > * { grid-column: 1; }
+    .article p.first::first-letter {
+      font-size: 56px;
+    }
+    .cards { grid-template-columns: 1fr; }
+    .card dl { grid-template-columns: 120px 1fr; font-size: 14px; }
+    .cta-inner { grid-template-columns: 1fr; }
+    .foot-inner { grid-template-columns: 1fr; }
+    .foot-right { text-align: left; }
+    .foot-right a:first-of-type { margin-left: 0; }
+    .byline { flex-wrap: wrap; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="https://integralayer.io">IntegraLayer<span class="dot">.</span></a>
+      <span class="nav-meta">Perspective · 16 Apr 2026</span>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="eyebrow fade-up">IntegraLayer Perspective · Issue 01</div>
+    <h1 class="title fade-up">DPP Category <em>Clarity</em></h1>
+    <p class="subtitle fade-up">Material identity and certificate verification are two distinct infrastructure layers. As the Digital Product Passport category takes commercial shape, treating them as one will hurt buyers, regulators, and the credibility of every claim in the stack.</p>
+    <div class="byline fade-up">
+      <div class="byline-item">
+        <span class="label">Published</span>
+        <span class="val">16 April 2026</span>
+      </div>
+      <div class="byline-item">
+        <span class="label">By</span>
+        <span class="val">Rachel Buchanan, Founder &amp; CEO</span>
+      </div>
+      <div class="byline-item">
+        <span class="label">Reading time</span>
+        <span class="val">~4 minutes</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="article">
+
+    <p class="lede">On April 6, 2026, SMX (NASDAQ: SMX) launched its Digital Material Passport Platform (DMPP), a blockchain-backed system that creates physical-to-digital identities for plastics, metals, and advanced materials using intrinsic material markers.</p>
+
+    <p class="first">It is a meaningful addition to the materials-traceability landscape and an early signal of how the Digital Product Passport (DPP) category is taking commercial shape ahead of the EU ESPR registry in mid-2026. Markets respond to clarity, and the past several weeks have brought a great deal of activity to this space.</p>
+
+    <p>As the category moves from concept to commerce, a category-level question becomes urgent: <strong>what exactly is being verified, and by whom?</strong> The answer separates two distinct infrastructure layers that are increasingly collapsed under a single label.</p>
+
+    <h2>Two layers, often conflated</h2>
+
+    <p>A Digital Product Passport is a container for claims about a product: where its materials came from, what it is made of, how it was produced, what certifications it carries, and what has happened to it over its lifecycle. The passport itself is structure. The claims inside it come from different sources, and each source requires a different kind of verification.</p>
+
+    <p><strong>Material identity</strong> is about establishing that a physical object is what it is claimed to be — that this particular batch of recycled polyethylene actually contains the percentage of post-consumer content on the label, or that this gold ingot actually originated from the mine in the declaration. Verifying material identity requires tying a digital record to the physical good, typically through markers (molecular, chemical, isotopic) that can be read back later.</p>
+
+    <p><strong>Certificate verification</strong> is about establishing that a claim about that material — typically issued by a third-party certification body — is real, current, and issued by the body that purports to have issued it. A GRS certificate, an RJC Chain-of-Custody certificate, a ResponsibleSteel site certification: these are the trust scaffolding of the materials economy. Verifying them requires checking that the certificate record is authentic, unaltered, and still in effect at the moment of the check.</p>
+
+    <p>These are different questions with different answers. A system that verifies the material does not thereby verify the certificate, and vice versa.</p>
+
+  </article>
+
+  <!-- Full-bleed comparison -->
+  <section class="compare-wrap">
+    <div class="compare-inner">
+      <div class="compare-label">Two infrastructure layers, side by side</div>
+      <h2 class="compare-h">The same physical object generates distinct verification needs.</h2>
+      <div class="cards">
+        <div class="card smx">
+          <div class="card-title">Material Layer</div>
+          <div class="card-sub">SMX DMPP &amp; peers</div>
+          <dl>
+            <dt>Verifies</dt>
+            <dd>The material itself — composition, origin, physical integrity</dd>
+            <dt>Method</dt>
+            <dd>Intrinsic material markers tied to a blockchain-anchored digital record</dd>
+            <dt>Trust root</dt>
+            <dd>The platform operator who marks and records the material</dd>
+            <dt>Buyer</dt>
+            <dd>Brands, traders, producers of raw materials</dd>
+            <dt>Architecture</dt>
+            <dd>Proprietary platform</dd>
+          </dl>
+        </div>
+        <div class="card integra">
+          <div class="card-title">Certificate Layer</div>
+          <div class="card-sub">IntegraLayer</div>
+          <dl>
+            <dt>Verifies</dt>
+            <dd>The certificate issued about the material or product</dd>
+            <dt>Method</dt>
+            <dd>Blockchain-timestamped certificate records, scannable via QR code in real time</dd>
+            <dt>Trust root</dt>
+            <dd>The accredited certification body — IntegraLayer is neutral infrastructure</dd>
+            <dt>Buyer</dt>
+            <dd>Certification bodies</dd>
+            <dt>Architecture</dt>
+            <dd>Neutral infrastructure sitting above existing certification platforms</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <article class="article">
+
+    <h2>Why the distinction matters now</h2>
+
+    <p>EU Regulation 2024/1781 (the ESPR) mandates an open, non-proprietary DPP infrastructure, with the central EU registry expected mid-2026. This is not a stylistic preference. It is an architectural mandate written into Article 9, motivated by the obvious concern that if DPP infrastructure is controlled by individual platform operators, the passports themselves inherit those operators' incentives and fragility.</p>
+
+    <p>A proprietary DPP platform can legitimately store material-identity data. But the certifications used as inputs into those passports — recycled content certificates, responsible sourcing certificates, composition claims from accredited bodies — still need to be independently verifiable by any party, at any time, without relying on the platform operator that happens to host them. That is a separate design requirement, and it is where certification bodies themselves have the greatest exposure.</p>
+
+    <div class="callout">
+      <h3>The risk of conflation</h3>
+      <p>If the market begins to treat "DPP platforms" as interchangeable, two things happen. <strong>Buyers</strong> mistake material-marker systems for certificate verification and discover mid-audit that the certificate behind a claim was never the thing being checked. <strong>Certification bodies</strong> watch their certificates become inputs into platforms they do not control, with no independent way for downstream users to verify that a certificate is authentic, current, and unchanged. Neither outcome serves the integrity of the certification industry.</p>
+    </div>
+
+    <h2>The stack, not the winner</h2>
+
+    <p>The DPP category is not a winner-take-all market. It is a stack. Material identity, certificate verification, passport registry, product-level assembly — each is a distinct function, and each will have its own infrastructure and its own accountable parties. As ESPR, CSRD, the EU Deforestation Regulation, and the FTC Green Guides take force over the next three years, all of these functions will be needed, and regulators will increasingly demand that each one be verifiable on its own terms.</p>
+
+    <p>SMX's DMPP addresses material-level identity, and does so with a clear technical approach. IntegraLayer addresses certificate-level verification, as neutral infrastructure that certification bodies themselves control. These are complements, not substitutes. The market will benefit from precision about which layer does which work — and so will every certification claim that has to survive the next decade of regulatory scrutiny.</p>
+
+  </article>
+
+  <section class="tagline">
+    <div class="tagline-inner">
+      <div class="tagline-h">Trust isn't claimed. It's proven.</div>
+      <div class="tagline-sub">The truth is verifiable.</div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-inner">
+      <div>
+        <div class="cta-h">For certification bodies navigating the DPP category</div>
+        <div class="cta-p">IntegraLayer provides neutral verification infrastructure that sits above existing certification platforms — independently verifiable in real time via QR code and blockchain timestamping. Patent pending.</div>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="/assets/DPP_Category_Clarity_OnePager.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download one-pager PDF
+        </a>
+        <a class="btn btn-secondary" href="mailto:rachel@integralayer.io?subject=DPP%20Category%20Clarity%20%E2%80%94%20follow-up">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Get in touch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="foot-inner">
+      <div>
+        <div class="foot-tag">Trust isn't claimed. It's proven. The truth is verifiable.</div>
+        <div class="foot-meta">IntegraLayer LLC &nbsp;·&nbsp; Patent Pending &nbsp;·&nbsp; © 2026</div>
+      </div>
+      <div class="foot-right">
+        <div class="name">Rachel Buchanan, Founder &amp; CEO</div>
+        <a href="mailto:rachel@integralayer.io">rachel@integralayer.io</a>
+        <a href="https://linkedin.com/in/rachel-buchanan-integralayer/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://integralayer.io">integralayer.io</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
