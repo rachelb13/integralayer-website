@@ -16,6 +16,52 @@
   }
 })();
 
+// Nav dropdown (Perspectives) — click to open, outside-click / Esc to close
+(function () {
+  const dropdowns = document.querySelectorAll('.nav-dropdown');
+  if (!dropdowns.length) return;
+
+  dropdowns.forEach((dd) => {
+    const trigger = dd.querySelector('.nav-dropdown-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const willOpen = !dd.classList.contains('open');
+      // close siblings
+      dropdowns.forEach((other) => {
+        if (other !== dd) {
+          other.classList.remove('open');
+          const t = other.querySelector('.nav-dropdown-trigger');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        }
+      });
+      dd.classList.toggle('open', willOpen);
+      trigger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    dropdowns.forEach((dd) => {
+      if (!dd.contains(e.target)) {
+        dd.classList.remove('open');
+        const t = dd.querySelector('.nav-dropdown-trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdowns.forEach((dd) => {
+        dd.classList.remove('open');
+        const t = dd.querySelector('.nav-dropdown-trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+})();
+
 // Contact form "thanks" banner after redirect from FormSubmit
 (function () {
   if (new URLSearchParams(window.location.search).get('sent') === '1') {
