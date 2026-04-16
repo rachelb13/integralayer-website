@@ -244,10 +244,10 @@ p  { margin: 0 0 1em; color: var(--ink-2); }
   letter-spacing: -0.015em;
 }
 .hero-ctas { display: flex; gap: 12px; margin: 22px 0 18px; flex-wrap: wrap; }
-.hero-bullets { list-style: none; padding: 0; margin: 12px 0 0; display: flex; gap: 18px 22px; flex-wrap: wrap; }
+.hero-bullets { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-direction: column; gap: 10px; }
 .hero-bullets li {
-  font-size: .92rem; color: var(--muted); font-weight: 500;
-  display: flex; align-items: center; gap: 8px;
+  font-size: .95rem; color: var(--muted); font-weight: 500;
+  display: flex; align-items: center; gap: 10px;
 }
 .hero-bullets li::before {
   content: ""; width: 8px; height: 8px; border-radius: 50%;
