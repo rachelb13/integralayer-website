@@ -72,9 +72,9 @@ p  { margin: 0 0 1em; color: var(--ink-2); }
   font-family: 'Fraunces', serif;
   font-style: italic;
   font-weight: 500;
-  font-size: 1.35rem;
+  font-size: 1.12rem;
   color: var(--ink-2);
-  margin: 4px 0 14px;
+  margin: 10px 0 10px;
   letter-spacing: .01em;
 }
 
@@ -224,7 +224,7 @@ p  { margin: 0 0 1em; color: var(--ink-2); }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  padding: 96px 0 80px;
+  padding: 72px 0 64px;
   background:
     radial-gradient(1200px 500px at 85% 0%, rgba(10,102,255,.08), transparent 60%),
     radial-gradient(900px 500px at 0% 100%, rgba(0,196,140,.07), transparent 60%),
@@ -238,12 +238,13 @@ p  { margin: 0 0 1em; color: var(--ink-2); }
   align-items: center;
 }
 .hero-copy h1 {
-  margin-top: 8px;
-  font-size: clamp(1.9rem, 3.6vw, 2.95rem);
-  line-height: 1.12;
+  margin-top: 6px;
+  font-size: clamp(1.55rem, 2.8vw, 2.35rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
-.hero-ctas { display: flex; gap: 12px; margin: 26px 0 22px; flex-wrap: wrap; }
-.hero-bullets { list-style: none; padding: 0; margin: 14px 0 0; display: flex; gap: 22px; flex-wrap: wrap; }
+.hero-ctas { display: flex; gap: 12px; margin: 22px 0 18px; flex-wrap: wrap; }
+.hero-bullets { list-style: none; padding: 0; margin: 12px 0 0; display: flex; gap: 18px 22px; flex-wrap: wrap; }
 .hero-bullets li {
   font-size: .92rem; color: var(--muted); font-weight: 500;
   display: flex; align-items: center; gap: 8px;
