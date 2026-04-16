@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=5" />
+  <link rel="stylesheet" href="assets/styles.css?v=6" />
 </head>
 <body>
   <header class="site-header">
@@ -82,16 +82,18 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">Public Certification Verification</p>
-          <h1>Trust isn't claimed.<br/><span class="accent">It's proven.</span></h1>
-          <p class="lede">Neutral infrastructure for public certification verification.</p>
+          <h1>Your certification marks aren't independently verifiable.<br/><span class="accent">In 2026, that's a compliance liability.</span></h1>
+          <p class="hero-tagline">Trust isn't claimed. It's proven.</p>
+          <p class="lede">IntegraLayer makes certification status publicly verifiable in real time — through QR codes and blockchain timestamping — without replacing your existing platform.</p>
           <div class="hero-ctas">
             <a class="btn btn-primary" href="https://calendly.com/rachel-integralayer/30min" target="_blank" rel="noopener">Request Pilot</a>
             <a class="btn btn-ghost" href="#demo">Try the demo →</a>
           </div>
           <ul class="hero-bullets">
-            <li>Immutable, time-stamped proof</li>
-            <li>Certifier-branded public page</li>
-            <li>Approval-safe by design</li>
+            <li>Independently verifiable in real time</li>
+            <li>Certifier-branded public verification page</li>
+            <li>Open, non-proprietary architecture — ESPR-aligned</li>
+            <li>Authority stays with the certification body</li>
           </ul>
         </div>
         <div class="hero-visual">
@@ -108,12 +110,12 @@
       <div class="container narrow">
         <p class="eyebrow center">Who We Are</p>
         <h2 class="center">Neutral Infrastructure for Certification Verification</h2>
-        <p class="section-lede center">Designed for certification authorities.</p>
+        <p class="section-lede center">Designed for certification bodies.</p>
         <p class="body">
-          IntegraLayer is a neutral infrastructure for public verification of certification status.
-          It enables certification bodies to make certificate status independently verifiable through
-          a public reference page. Authority remains with the certifier.
-          IntegraLayer does not issue certifications and does not judge compliance.
+          IntegraLayer is neutral verification infrastructure built for certification bodies. We enable certification organizations to make certificate status independently verifiable through a public reference page — accessible to anyone, at any time, without going through the issuer's own system.
+        </p>
+        <p class="body">
+          Authority remains with the certifier. IntegraLayer does not issue certifications, does not judge compliance, and does not replace your existing platform. <strong>We sit above it.</strong>
         </p>
       </div>
     </section>
@@ -124,15 +126,37 @@
         <p class="eyebrow center">The Problem</p>
         <h2 class="center">When Certification Claims Can't Be Verified Publicly</h2>
         <p class="body">
-          Certification marks are relied on by consumers, auditors, and regulators to confirm valid
-          participation in a certification program. When certificates expire or are revoked, marks
-          often remain visible — with no public way to confirm current status.
+          Certification marks are relied on by consumers, auditors, procurement teams, and regulators to confirm valid participation in a certification program. When certificates expire or are revoked, marks often remain visible — with no public way to confirm current status.
         </p>
         <p class="body">
-          Verification falls back to internal lookups, emails, or static PDFs. There is no neutral
-          reference point. When questions surface publicly, Legal is left to defend mark usage without
-          a verifiable artifact. <strong>That's when it reaches the Board.</strong>
+          Verification falls back to internal lookups, emails, or static PDFs. There is no neutral reference point.
         </p>
+        <p class="body">
+          Under EU Regulation 2024/1781 (ESPR), verification infrastructure must be open, non-proprietary, and machine-readable. Certification marks linked only to issuer-controlled databases do not satisfy this requirement — regardless of whether a QR code is present. The EU Digital Product Passport central registry goes live in 2026.
+        </p>
+        <p class="body">
+          When questions surface publicly, Legal is left to defend mark usage without a verifiable artifact. <strong>That's when it reaches the Board.</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- REGULATORY CONTEXT -->
+    <section id="regulatory-context" class="section">
+      <div class="container narrow">
+        <p class="eyebrow center">Regulatory Context</p>
+        <h2 class="center">The Window Is Closing.</h2>
+        <p class="body">
+          EU Regulation 2024/1781 (ESPR) mandates open, non-proprietary, machine-readable verification infrastructure for certified products. The EU Digital Product Passport central registry launches in 2026, beginning with construction and energy products, followed by textiles and batteries.
+        </p>
+        <p class="body">
+          The compliance question is not whether your mark is valid. It is whether your verification architecture is open enough for anyone to confirm that — independently, without contacting you.
+        </p>
+        <p class="body">
+          Most existing certification platforms — proprietary databases, API-gated lookups, issuer-controlled registries — are structurally non-compliant with this mandate by design. They cannot be retrofitted. IntegraLayer is built from the ground up to satisfy it.
+        </p>
+        <blockquote class="callout">
+          <p>&ldquo;Open, non-proprietary, and machine-readable&rdquo; is not a feature request. It is a regulatory requirement with a live deadline.</p>
+        </blockquote>
       </div>
     </section>
 
@@ -145,27 +169,22 @@
           <article class="step">
             <div class="step-num">01</div>
             <h3>Input</h3>
-            <p>The certification body provides certificate data — holder name, certification type,
-              issue date, expiration, and current status.</p>
+            <p>The certification body provides certificate data: holder name, certification type, issue date, expiration, and current status. No system migration required. Works alongside your existing platform.</p>
           </article>
           <article class="step">
             <div class="step-num">02</div>
             <h3>Process</h3>
-            <p>Certificate data is cryptographically hashed and time-stamped. A unique QR code is
-              generated and linked to a public verification endpoint. The hash is written to an
-              immutable blockchain record.</p>
+            <p>Certificate data is hashed and anchored to an immutable blockchain record. A unique QR code is generated and linked to a public verification endpoint. The record is permanent, time-stamped, and open — no login, no API key, no issuer permission required to verify.</p>
           </article>
           <article class="step">
             <div class="step-num">03</div>
             <h3>Output</h3>
-            <p>A certifier-branded public verification page showing current status — valid, expired,
-              or revoked — accessible to anyone who scans the QR code.</p>
+            <p>A certifier-branded public verification page showing current status — valid, expired, or revoked — accessible to anyone who scans the QR code. Designed for customers, regulators, auditors, and the public.</p>
           </article>
           <article class="step">
             <div class="step-num">04</div>
             <h3>Control</h3>
-            <p>The issuing organization controls everything. They issue, update, expire, and revoke.
-              IntegraLayer only reflects what the certifier reports. We never interpret, score, or override.</p>
+            <p>The issuing organization controls everything. They issue, update, expire, and revoke. IntegraLayer only reflects what the certifier reports. We never interpret, score, or override. <strong>Your authority. Our infrastructure.</strong></p>
           </article>
         </div>
       </div>
@@ -206,8 +225,9 @@
       <div class="container">
         <div class="demo-head center">
           <p class="eyebrow">Interactive Prototype</p>
-          <h2>Try it yourself. No account needed.</h2>
-          <p class="section-lede">A live, clickable walk-through of the issuer dashboard and public verification page. Sign in, issue a certificate, watch it get hashed and anchored, then view the public page a scanner would see.</p>
+          <h2>See a Certificate Get Verified in Under 60 Seconds.</h2>
+          <p class="section-lede">This live prototype walks through the full issuer experience: sign in, issue a certificate, watch it get hashed and anchored to the blockchain, then view the public verification page exactly as a regulator, auditor, or customer would see it after scanning the QR code.</p>
+          <p class="section-lede">No account required. No configuration. Click anywhere to explore.</p>
         </div>
 
         <div class="browser-mock">
@@ -251,19 +271,19 @@
     <section id="who-its-for" class="section">
       <div class="container">
         <p class="eyebrow center">Designed For</p>
-        <h2 class="center">Where neutral verification matters.</h2>
+        <h2 class="center">Built for the Organizations That Own the Mark.</h2>
         <div class="cards">
           <div class="card">
-            <h3>Certification Organizations</h3>
-            <p>Including certification bodies, standards organizations, and accreditation programs.</p>
+            <h3>Certification Bodies &amp; Standards Organizations</h3>
+            <p>Organic, green building, textile, food safety, energy, product safety — any certification body whose marks are relied on by auditors, procurement teams, or regulators. If your certificate status isn't publicly verifiable without contacting you, IntegraLayer closes that gap.</p>
           </div>
           <div class="card">
-            <h3>Legal &amp; Compliance</h3>
-            <p>Leadership responsible for defending mark usage and certification integrity.</p>
+            <h3>Legal &amp; Compliance Leadership</h3>
+            <p>Responsible for defending mark usage when questions surface externally. IntegraLayer gives you a verifiable, timestamped artifact — before you need it.</p>
           </div>
           <div class="card">
-            <h3>Board-Level Risk</h3>
-            <p>Risk owners who need verifiable, defensible public artifacts.</p>
+            <h3>Board-Level Risk &amp; Governance</h3>
+            <p>Verification infrastructure is increasingly a governance question, not just a technical one. ESPR compliance, FTC guidance on substantiation, and EU CSRD reporting all create upstream pressure on certification mark integrity. IntegraLayer provides the defensible public reference layer your organization needs.</p>
           </div>
         </div>
       </div>
@@ -276,11 +296,13 @@
         <h2 class="center">A clear line, intentionally drawn.</h2>
         <ul class="not-list">
           <li>A certification authority</li>
-          <li>A compliance system</li>
+          <li>A compliance judgment system</li>
           <li>A system of record</li>
           <li>An enforcement tool</li>
-          <li>An AI-driven decision engine</li>
+          <li>An AI scoring engine</li>
+          <li>A replacement for your existing platform</li>
         </ul>
+        <p class="section-note">IntegraLayer is infrastructure. What your certification means is entirely yours.</p>
       </div>
     </section>
 
@@ -289,6 +311,7 @@
       <div class="container narrow">
         <p class="eyebrow center">Security &amp; Neutrality</p>
         <h2 class="center">Built on a neutrality-first principle.</h2>
+        <p class="section-intro body center">Our architecture is built on a single principle: IntegraLayer should never be in a position to influence, interpret, or gate the verification of a certification it did not issue.</p>
         <div class="pillars">
           <div class="pillar"><h4>Minimal data retention</h4></div>
           <div class="pillar"><h4>No opinionated outputs</h4></div>
@@ -303,8 +326,9 @@
       <div class="container narrow">
         <div class="center">
           <p class="eyebrow">Contact</p>
-          <h2>Request a Phase 1 Pilot Discussion</h2>
-          <p class="body">Pilots are approval-led and expect Legal and Compliance involvement.</p>
+          <h2>Request a Phase 1 Pilot Discussion.</h2>
+          <p class="body">Pilots are structured for certification bodies evaluating public verification infrastructure. Legal and Compliance involvement is expected and welcome. We work with organizations across organic, green building, textile, food safety, energy, and product certification sectors.</p>
+          <p class="body"><strong>Founding client pricing is available through December 31, 2026.</strong></p>
         </div>
 
         <form
@@ -349,8 +373,8 @@
               <option>Phase 1 Pilot Discussion</option>
               <option>Certification body / Standards organization</option>
               <option>Legal or Compliance inquiry</option>
+              <option>Partnership or integration</option>
               <option>Press or analyst inquiry</option>
-              <option>Partnership</option>
               <option>Other</option>
             </select>
           </div>
@@ -374,7 +398,7 @@
     <div class="container footer-grid">
       <div>
         <img src="assets/img/logo-white.png" alt="IntegraLayer" class="footer-logo" />
-        <p class="footer-tag">The Truth is Verifiable.</p>
+        <p class="footer-tag">Trust isn't claimed. It's proven.<br/>The truth is verifiable.</p>
         <div class="footer-socials">
           <a href="https://www.linkedin.com/company/integra-layer-io/" target="_blank" rel="noopener" aria-label="IntegraLayer on LinkedIn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -389,6 +413,6 @@
     </div>
   </footer>
 
-  <script src="assets/app.js?v=5"></script>
+  <script src="assets/app.js?v=6"></script>
 </body>
 </html>

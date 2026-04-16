@@ -67,6 +67,47 @@ p  { margin: 0 0 1em; color: var(--ink-2); }
 .muted { color: var(--muted); }
 .fineprint { font-size: .82rem; color: var(--muted); margin-top: .75em; }
 
+/* Hero supporting tagline — sits between H1 and lede */
+.hero-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.35rem;
+  color: var(--ink-2);
+  margin: 4px 0 14px;
+  letter-spacing: .01em;
+}
+
+/* Pull quote / callout — used in Regulatory Context and elsewhere */
+.callout {
+  margin: 28px 0 0;
+  padding: 20px 24px;
+  border-left: 4px solid var(--accent);
+  background: var(--ink-soft, #F5F7FA);
+  border-radius: 8px;
+  font-family: 'Fraunces', serif;
+  font-size: 1.12rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.45;
+}
+.callout p { margin: 0; }
+
+/* Small note beneath a list or grid (section footer-style line) */
+.section-note {
+  margin-top: 22px;
+  font-size: .98rem;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+}
+
+/* Introductory paragraph that sits above a grid (e.g., pillars) */
+.section-intro {
+  max-width: 62ch;
+  margin: 0 auto 8px;
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
