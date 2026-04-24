@@ -204,6 +204,21 @@
     color: var(--mid);
     margin-bottom: 22px;
   }
+  .article a,
+  .callout a {
+    color: var(--bright-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(10, 102, 255, 0.4);
+    transition: text-decoration-color 180ms ease, color 180ms ease;
+  }
+  .article a:hover,
+  .callout a:hover {
+    color: var(--midnight-blue);
+    text-decoration-color: var(--bright-green);
+    text-decoration-thickness: 2px;
+  }
   .article p.lede {
     font-family: var(--font-display);
     font-weight: 400;
@@ -570,21 +585,21 @@
 
   <article class="article">
 
-    <p class="lede">On April 6, 2026, SMX (NASDAQ: SMX) launched its Digital Material Passport Platform (DMPP), a blockchain-backed system that creates physical-to-digital identities for plastics, metals, and advanced materials using intrinsic material markers.</p>
+    <p class="lede">On April 6, 2026, <a href="https://www.smx.tech/" target="_blank" rel="noopener noreferrer">SMX (NASDAQ: SMX)</a> launched its <a href="https://www.accessnewswire.com/newsroom/en/blockchain-and-cryptocurrency/smx-launches-digital-material-passport-platform-dmpp-enabling-verifie-1155007" target="_blank" rel="noopener noreferrer">Digital Material Passport Platform (DMPP)</a>, a blockchain-backed system that creates physical-to-digital identities for plastics, metals, and advanced materials using intrinsic material markers.</p>
 
-    <p class="first">It is a meaningful addition to the materials-traceability landscape and an early signal of how the Digital Product Passport (DPP) category is taking commercial shape ahead of the EU ESPR registry in mid-2026. Markets respond to clarity, and the past several weeks have brought a great deal of activity to this space.</p>
+    <p class="first">It is a meaningful addition to materials traceability and an early signal of how the Digital Product Passport (DPP) category is taking commercial shape. The EU's central <a href="https://eur-lex.europa.eu/eli/reg/2024/1781/oj/eng" target="_blank" rel="noopener noreferrer">ESPR</a> registry (the Ecodesign for Sustainable Products Regulation, EU Regulation 2024/1781) is expected mid-2026. Commercial products are now shipping into the category. Markets respond to clarity.</p>
 
-    <p>As the category moves from concept to commerce, a category-level question becomes urgent: <strong>what exactly is being verified, and by whom?</strong> The answer separates two distinct infrastructure layers that are increasingly collapsed under a single label.</p>
+    <p>Now that the first commercial DPP products are live, a category-level question is urgent: <strong>what exactly is being verified, and by whom?</strong> The answer separates two infrastructure layers that are increasingly collapsed under a single label.</p>
 
-    <h2>Two layers, often conflated</h2>
+    <h2>Two layers, often treated as one</h2>
 
     <p>A Digital Product Passport is a container for claims about a product: where its materials came from, what it is made of, how it was produced, what certifications it carries, and what has happened to it over its lifecycle. The passport itself is structure. The claims inside it come from different sources, and each source requires a different kind of verification.</p>
 
-    <p><strong>Material identity</strong> is about establishing that a physical object is what it is claimed to be — that this particular batch of recycled polyethylene actually contains the percentage of post-consumer content on the label, or that this gold ingot actually originated from the mine in the declaration. Verifying material identity requires tying a digital record to the physical good, typically through markers (molecular, chemical, isotopic) that can be read back later.</p>
+    <p><strong>Material identity</strong> is about establishing that a physical object is what it is claimed to be. That this particular batch of recycled polyethylene actually contains the percentage of post-consumer content on the label. That this gold ingot actually originated from the mine in the declaration. Verifying material identity requires tying a digital record to the physical good, typically through markers (molecular, chemical, isotopic) that can be read back later.</p>
 
-    <p><strong>Certificate verification</strong> is about establishing that a claim about that material — typically issued by a third-party certification body — is real, current, and issued by the body that purports to have issued it. A GRS certificate, an RJC Chain-of-Custody certificate, a ResponsibleSteel site certification: these are the trust scaffolding of the materials economy. Verifying them requires checking that the certificate record is authentic, unaltered, and still in effect at the moment of the check.</p>
+    <p><strong>Certificate verification</strong> is about establishing that a claim about that material, typically issued by a third-party certification body, is real, current, and issued by the body that claims to have issued it. A <a href="https://textileexchange.org/recycled-claim-global-recycled-standard/" target="_blank" rel="noopener noreferrer">GRS (Global Recycled Standard)</a> certificate. An <a href="https://www.responsiblejewellery.com/standards/chain-of-custody/" target="_blank" rel="noopener noreferrer">RJC (Responsible Jewellery Council) Chain-of-Custody</a> certificate. A <a href="https://www.responsiblesteel.org/" target="_blank" rel="noopener noreferrer">ResponsibleSteel</a> site certification. These are the certificates that hold the materials economy together. Verifying them requires checking that the certificate record is authentic, unaltered, and still in effect at the moment of the check.</p>
 
-    <p>These are different questions with different answers. A system that verifies the material does not thereby verify the certificate, and vice versa.</p>
+    <p>These are different questions with different answers. A system that verifies the material does not also verify the certificate, and vice versa.</p>
 
   </article>
 
@@ -599,15 +614,15 @@
           <div class="card-sub">SMX DMPP &amp; peers</div>
           <dl>
             <dt>Verifies</dt>
-            <dd>The material itself — composition, origin, physical integrity</dd>
+            <dd>The material itself. Composition, origin, physical integrity.</dd>
             <dt>Method</dt>
-            <dd>Intrinsic material markers tied to a blockchain-anchored digital record</dd>
+            <dd>Intrinsic material markers tied to a blockchain-anchored digital record.</dd>
             <dt>Trust root</dt>
-            <dd>The platform operator who marks and records the material</dd>
+            <dd>The platform operator who marks and records the material.</dd>
             <dt>Buyer</dt>
-            <dd>Brands, traders, producers of raw materials</dd>
+            <dd>Brands, traders, producers of raw materials.</dd>
             <dt>Architecture</dt>
-            <dd>Proprietary platform</dd>
+            <dd>Proprietary platform.</dd>
           </dl>
         </div>
         <div class="card integra">
@@ -615,15 +630,15 @@
           <div class="card-sub">IntegraLayer</div>
           <dl>
             <dt>Verifies</dt>
-            <dd>The certificate issued about the material or product</dd>
+            <dd>The certificate issued about the material or product.</dd>
             <dt>Method</dt>
-            <dd>Blockchain-timestamped certificate records, scannable via QR code in real time</dd>
+            <dd>Blockchain-timestamped certificate records, scannable via QR code in real time.</dd>
             <dt>Trust root</dt>
-            <dd>The accredited certification body — IntegraLayer is neutral infrastructure</dd>
+            <dd>The accredited certification body. IntegraLayer is neutral infrastructure.</dd>
             <dt>Buyer</dt>
-            <dd>Certification bodies</dd>
+            <dd>Certification bodies.</dd>
             <dt>Architecture</dt>
-            <dd>Neutral infrastructure sitting above existing certification platforms</dd>
+            <dd>Neutral infrastructure sitting above existing certification platforms.</dd>
           </dl>
         </div>
       </div>
@@ -634,20 +649,20 @@
 
     <h2>Why the distinction matters now</h2>
 
-    <p>EU Regulation 2024/1781 (the ESPR) mandates an open, non-proprietary DPP infrastructure, with the central EU registry expected mid-2026. This is not a stylistic preference. It is an architectural mandate written into Article 9, motivated by the obvious concern that if DPP infrastructure is controlled by individual platform operators, the passports themselves inherit those operators' incentives and fragility.</p>
+    <p>The ESPR requires an open, non-proprietary DPP infrastructure. This is not a stylistic preference. It is written into the law itself, in <a href="https://eur-lex.europa.eu/eli/reg/2024/1781/oj/eng#art_9" target="_blank" rel="noopener noreferrer">Article 9 of EU Regulation 2024/1781</a>. If DPP infrastructure is controlled by individual platform operators, the passports take on those operators' weaknesses. If the operator goes down, the passport goes with it. If the operator gets bought or changes its business model, the passport policy changes too.</p>
 
-    <p>A proprietary DPP platform can legitimately store material-identity data. But the certifications used as inputs into those passports — recycled content certificates, responsible sourcing certificates, composition claims from accredited bodies — still need to be independently verifiable by any party, at any time, without relying on the platform operator that happens to host them. That is a separate design requirement, and it is where certification bodies themselves have the greatest exposure.</p>
+    <p>A proprietary DPP platform can legitimately store material-identity data. But the certifications used as inputs into those passports, including recycled content certificates, responsible sourcing certificates, and composition claims from accredited bodies, still need to be independently verifiable by any party, at any time, without relying on the platform operator that happens to host them. That is a separate design requirement. It is where certification bodies themselves have the greatest exposure.</p>
 
     <div class="callout">
       <h3>The risk of conflation</h3>
       <p>If the market begins to treat "DPP platforms" as interchangeable, two things happen. <strong>Buyers</strong> mistake material-marker systems for certificate verification and discover mid-audit that the certificate behind a claim was never the thing being checked. <strong>Certification bodies</strong> watch their certificates become inputs into platforms they do not control, with no independent way for downstream users to verify that a certificate is authentic, current, and unchanged. Neither outcome serves the integrity of the certification industry.</p>
     </div>
 
-    <h2>The stack, not the winner</h2>
+    <h2>The category is a stack</h2>
 
-    <p>The DPP category is not a winner-take-all market. It is a stack. Material identity, certificate verification, passport registry, product-level assembly — each is a distinct function, and each will have its own infrastructure and its own accountable parties. As ESPR, CSRD, the EU Deforestation Regulation, and the FTC Green Guides take force over the next three years, all of these functions will be needed, and regulators will increasingly demand that each one be verifiable on its own terms.</p>
+    <p>The DPP category is not a winner-take-all market. It is a stack. Four distinct functions live in that stack: material identity, certificate verification, passport registry, and product-level assembly. Each has its own infrastructure. Each has its own accountable parties. As <a href="https://eur-lex.europa.eu/eli/reg/2024/1781/oj/eng" target="_blank" rel="noopener noreferrer">ESPR</a>, <a href="https://finance.ec.europa.eu/financial-markets/company-reporting-and-auditing/company-reporting/corporate-sustainability-reporting_en" target="_blank" rel="noopener noreferrer">CSRD</a> (the Corporate Sustainability Reporting Directive), the <a href="https://environment.ec.europa.eu/topics/forests/deforestation/regulation-deforestation-free-products_en" target="_blank" rel="noopener noreferrer">EU Deforestation Regulation</a>, and the <a href="https://www.ftc.gov/news-events/topics/truth-advertising/green-guides" target="_blank" rel="noopener noreferrer">FTC Green Guides</a> take force over the next three years, all of these functions will be needed, and regulators will increasingly demand that each one be verifiable on its own terms.</p>
 
-    <p>SMX's DMPP addresses material-level identity, and does so with a clear technical approach. IntegraLayer addresses certificate-level verification, as neutral infrastructure that certification bodies themselves control. These are complements, not substitutes. The market will benefit from precision about which layer does which work — and so will every certification claim that has to survive the next decade of regulatory scrutiny.</p>
+    <p>SMX's DMPP addresses material-level identity with a clear technical approach. IntegraLayer addresses certificate-level verification as neutral infrastructure that certification bodies themselves control. The two layers complement each other. The market will benefit from precision about which layer does which work. So will every certification claim that has to survive the next decade of regulatory scrutiny.</p>
 
   </article>
 
