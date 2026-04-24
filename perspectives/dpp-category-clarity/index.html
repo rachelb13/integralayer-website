@@ -93,14 +93,15 @@
     justify-content: space-between;
   }
   .brand {
-    font-family: var(--font-brand);
-    font-weight: 700;
-    font-size: 17px;
-    letter-spacing: -0.01em;
-    color: var(--midnight-blue);
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
   }
-  .brand .dot { color: var(--bright-green); }
+  .brand img {
+    height: 30px;
+    width: auto;
+    display: block;
+  }
   .nav-meta {
     font-family: var(--font-mono);
     font-size: 11.5px;
@@ -540,7 +541,9 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="https://integralayer.io">IntegraLayer<span class="dot">.</span></a>
+      <a class="brand" href="https://integralayer.io" aria-label="IntegraLayer home">
+        <img src="/assets/img/logo-black.png" alt="IntegraLayer" />
+      </a>
       <span class="nav-meta">Perspective · 16 Apr 2026</span>
     </div>
   </nav>
