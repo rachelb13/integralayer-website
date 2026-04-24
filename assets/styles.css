@@ -61,6 +61,12 @@ p  { margin: 0 0 1em; color: var(--ink-2); }
   margin: 0 0 .9em;
 }
 .eyebrow.center { display: block; }
+/* Mobile-only line breaks — used to give punchy bold callouts their own line on phones */
+.br-mobile { display: none; }
+@media (max-width: 540px) {
+  .br-mobile { display: inline; }
+}
+
 .lede { font-size: 1.2rem; color: var(--muted); max-width: 36ch; }
 .section-lede { font-size: 1.1rem; color: var(--muted); }
 .body { font-size: 1.02rem; color: var(--ink-2); }
