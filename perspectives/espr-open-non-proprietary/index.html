@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What "Open and Non-Proprietary" Mean in the ESPR — IntegraLayer</title>
+<meta name="description" content="Three architectural tests are written into Article 9 of the ESPR. Most existing certification verification systems clear one. Compliance requires all three. An IntegraLayer perspective on EU Regulation 2024/1781.">
+<link rel="canonical" href="https://integralayer.io/perspectives/espr-open-non-proprietary">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="IntegraLayer">
+<meta property="og:title" content="What 'Open and Non-Proprietary' Mean in the ESPR">
+<meta property="og:description" content="Three architectural tests are written into Article 9. Most existing certification verification systems clear one. Compliance requires all three.">
+<meta property="og:url" content="https://integralayer.io/perspectives/espr-open-non-proprietary">
+<meta property="og:image" content="https://integralayer.io/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-05-01">
+<meta property="article:author" content="Rachel Buchanan">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What 'Open and Non-Proprietary' Mean in the ESPR">
+<meta name="twitter:description" content="Three architectural tests are written into Article 9. Most existing certification verification systems clear one. Compliance requires all three.">
+<meta name="twitter:image" content="https://integralayer.io/assets/img/og-image.png">
+<link rel="icon" type="image/png" href="/assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --midnight-blue: #0B0F14;
+    --bright-blue:   #0a66ff;
+    --bright-green:  #00c48c;
+    --violet-blue:   #3949AB;
+    --light-grey:    #ECEFF1;
+    --blue-tint:     #E8F0FE;
+    --green-tint:    #E6F9F4;
+    --subtle:        #6B7A8A;
+    --mid:           #1a222c;
+    --header-conf:   #88AACC;
+    --off-white:     #FAFBFC;
+    --hairline:      #D8DEE4;
+    --font-display:  "Merriweather", Georgia, serif;
+    --font-brand:    "Inter", system-ui, sans-serif;
+    --font-body:     "Inter", system-ui, sans-serif;
+    --font-mono:     "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--mid);
+    background: var(--off-white);
+    line-height: 1.65;
+    font-size: 17px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Atmospheric background texture */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at top left, rgba(9, 102, 245, 0.04), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(8, 192, 141, 0.03), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 1; }
+
+  /* ===== Top nav strip ===== */
+  .nav {
+    border-bottom: 1px solid var(--hairline);
+    background: rgba(250, 251, 252, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .nav-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .brand img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+  .nav-meta {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--subtle);
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 72px 32px 48px;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bright-blue);
+    margin-bottom: 28px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--bright-blue);
+  }
+
+  /* Note: this issue's title is longer than Issue 01, so font-size is slightly smaller and max-width is wider to accommodate. */
+  h1.title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(36px, 5.2vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--midnight-blue);
+    max-width: 22ch;
+    margin-bottom: 28px;
+    font-variation-settings: "opsz" 120;
+  }
+  h1.title em {
+    font-style: italic;
+    color: var(--bright-blue);
+    font-weight: 600;
+  }
+
+  .subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 400;
+    color: var(--mid);
+    max-width: 62ch;
+    line-height: 1.45;
+    margin-bottom: 40px;
+  }
+
+  .byline {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--hairline);
+    font-family: var(--font-body);
+    font-size: 14px;
+  }
+  .byline-item .label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-bottom: 4px;
+  }
+  .byline-item .val {
+    color: var(--midnight-blue);
+    font-weight: 500;
+  }
+  .byline-item .val a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--bright-green); }
+  .byline-item .val a:hover { color: var(--bright-blue); border-color: var(--bright-blue); }
+
+  /* ===== Main article ===== */
+  .article {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px 32px 48px;
+    display: grid;
+    grid-template-columns: 1fr 720px 1fr;
+    gap: 0;
+  }
+  .article > * { grid-column: 2; }
+  .article .full { grid-column: 1 / -1; }
+
+  .article p {
+    font-size: 18px;
+    line-height: 1.72;
+    color: var(--mid);
+    margin-bottom: 22px;
+  }
+  .article a,
+  .callout a {
+    color: var(--bright-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(10, 102, 255, 0.4);
+    transition: text-decoration-color 180ms ease, color 180ms ease;
+  }
+  .article a:hover,
+  .callout a:hover {
+    color: var(--midnight-blue);
+    text-decoration-color: var(--bright-green);
+    text-decoration-thickness: 2px;
+  }
+  .article p.lede {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--midnight-blue);
+    margin-bottom: 32px;
+    font-variation-settings: "opsz" 96;
+  }
+  .article strong {
+    color: var(--midnight-blue);
+    font-weight: 600;
+  }
+  .article h2 {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    color: var(--midnight-blue);
+    margin: 56px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--bright-blue);
+    max-width: fit-content;
+  }
+
+  /* Drop cap on first paragraph */
+  .article p.first::first-letter {
+    font-family: var(--font-display);
+    float: left;
+    font-size: 72px;
+    line-height: 0.85;
+    padding: 6px 10px 0 0;
+    color: var(--bright-blue);
+    font-weight: 500;
+  }
+
+  /* ===== Callout (used here for the four-question architectural test) ===== */
+  .callout {
+    background: var(--blue-tint);
+    border-left: 4px solid var(--bright-blue);
+    padding: 28px 32px;
+    margin: 48px 0;
+    border-radius: 2px 10px 10px 2px;
+  }
+  .callout h3 {
+    font-family: var(--font-brand);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--midnight-blue);
+    margin-bottom: 12px;
+  }
+  .callout p {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--mid);
+    margin: 0 0 16px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p strong { color: var(--midnight-blue); }
+  .callout ol {
+    margin: 12px 0 16px;
+    padding-left: 24px;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--mid);
+  }
+  .callout ol li {
+    margin-bottom: 12px;
+    padding-left: 6px;
+  }
+  .callout ol li:last-child { margin-bottom: 0; }
+  .callout ol li::marker {
+    color: var(--bright-blue);
+    font-weight: 600;
+  }
+
+  /* ===== Closing banner / tagline ===== */
+  .tagline {
+    background: var(--midnight-blue);
+    padding: 72px 32px;
+    margin: 80px 0 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .tagline::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(9, 102, 245, 0.25), transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(8, 192, 141, 0.18), transparent 50%);
+  }
+  .tagline-inner { position: relative; }
+  .tagline-h {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(32px, 5vw, 52px);
+    color: white;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .tagline-sub {
+    font-family: var(--font-body);
+    font-size: clamp(18px, 2.2vw, 24px);
+    color: var(--bright-green);
+    font-weight: 400;
+  }
+
+  /* ===== CTA ===== */
+  .cta {
+    background: white;
+    border-top: 1px solid var(--hairline);
+    padding: 64px 32px;
+  }
+  .cta-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .cta-h {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.25;
+    color: var(--midnight-blue);
+    margin-bottom: 12px;
+    max-width: 20ch;
+  }
+  .cta-p {
+    font-size: 16px;
+    color: var(--mid);
+    max-width: 45ch;
+  }
+  .cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 28px;
+    font-family: var(--font-brand);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+  .btn-primary {
+    background: var(--bright-blue);
+    color: white;
+    box-shadow: 0 4px 20px rgba(9, 102, 245, 0.18);
+  }
+  .btn-primary:hover {
+    background: #0854cc;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(9, 102, 245, 0.26);
+  }
+  .btn-secondary {
+    background: white;
+    color: var(--midnight-blue);
+    border: 1px solid var(--hairline);
+  }
+  .btn-secondary:hover {
+    border-color: var(--bright-blue);
+    color: var(--bright-blue);
+  }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* ===== Footer ===== */
+  .foot {
+    background: var(--midnight-blue);
+    color: var(--header-conf);
+    padding: 48px 32px 40px;
+  }
+  .foot-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    font-size: 14px;
+  }
+  .foot-tag {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--bright-green);
+    margin-bottom: 10px;
+  }
+  .foot-meta {
+    color: var(--header-conf);
+    font-size: 13px;
+  }
+  .foot-right { text-align: right; }
+  .foot-right .name {
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .foot-right a {
+    color: var(--bright-green);
+    text-decoration: none;
+    margin-left: 20px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+  .foot-right a:hover { border-color: var(--bright-green); }
+  .foot-right a:first-of-type { margin-left: 0; }
+
+  /* ===== Motion on load (restrained, one orchestrated moment) ===== */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up:nth-child(1) { animation-delay: 0.05s; }
+  .fade-up:nth-child(2) { animation-delay: 0.15s; }
+  .fade-up:nth-child(3) { animation-delay: 0.28s; }
+  .fade-up:nth-child(4) { animation-delay: 0.42s; }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 880px) {
+    .article {
+      grid-template-columns: 1fr;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .article > * { grid-column: 1; }
+    .article p.first::first-letter {
+      font-size: 56px;
+    }
+    .cta-inner { grid-template-columns: 1fr; }
+    .foot-inner { grid-template-columns: 1fr; }
+    .foot-right { text-align: left; }
+    .foot-right a:first-of-type { margin-left: 0; }
+    .byline { flex-wrap: wrap; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="https://integralayer.io" aria-label="IntegraLayer home">
+        <img src="/assets/img/logo-black.png" alt="IntegraLayer" />
+      </a>
+      <span class="nav-meta">Perspective · 1 May 2026</span>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="eyebrow fade-up">IntegraLayer Perspective · Issue 02</div>
+    <h1 class="title fade-up">What "Open and Non-Proprietary" Mean in the <em>ESPR</em></h1>
+    <p class="subtitle fade-up">Three architectural tests are written into Article 9. Most existing certification verification systems clear one. Compliance requires all three.</p>
+    <div class="byline fade-up">
+      <div class="byline-item">
+        <span class="label">Published</span>
+        <span class="val">1 May 2026</span>
+      </div>
+      <div class="byline-item">
+        <span class="label">By</span>
+        <span class="val">Rachel Buchanan, Founder &amp; CEO</span>
+      </div>
+      <div class="byline-item">
+        <span class="label">Reading time</span>
+        <span class="val">~4 minutes</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="article">
+
+    <p class="lede">As the EU's <a href="https://commission.europa.eu/energy-climate-change-environment/standards-tools-and-labels/products-labelling-rules-and-requirements/sustainable-products/ecodesign-sustainable-products-regulation/digital-product-passport_en" target="_blank" rel="noopener noreferrer">Digital Product Passport</a> regime moves toward its central registry launch on July 19, 2026, three words in <a href="https://eur-lex.europa.eu/eli/reg/2024/1781/oj/eng" target="_blank" rel="noopener noreferrer">EU Regulation 2024/1781</a> carry the architectural requirement for certification verification across the union. Open. Non-proprietary. Machine-readable.</p>
+
+    <p class="first">Each is a separate test. Each binds independently. The requirement binds at the architecture layer, beneath the user interface, and most existing verification systems do not clear it.</p>
+
+    <h2>What the regulation says</h2>
+
+    <p><a href="https://eur-lex.europa.eu/eli/reg/2024/1781/oj/eng#art_9" target="_blank" rel="noopener noreferrer">Article 9</a> of the <a href="https://commission.europa.eu/energy-climate-change-environment/standards-tools-and-labels/products-labelling-rules-and-requirements/sustainable-products/ecodesign-sustainable-products-regulation_en" target="_blank" rel="noopener noreferrer">Ecodesign for Sustainable Products Regulation</a> (the ESPR, EU Regulation 2024/1781) specifies that Digital Product Passport data must be based on "open standards and interoperable formats" and must be "machine-readable, searchable and structured." The regulation's accompanying technical guidance is more specific: the standards must be "open, non-proprietary international standards," and the technologies underlying DPP infrastructure must operate "without dependence on any commercial technology provider."</p>
+
+    <p>These are three distinct requirements. Open and non-proprietary are not synonyms. Machine-readable is a separate test from both. A verification system can clear one and fail the others. Compliance requires all three.</p>
+
+    <p>The Commission's <a href="https://green-forum.ec.europa.eu/implementing-ecodesign-sustainable-products-regulation_en" target="_blank" rel="noopener noreferrer">2025-2030 ESPR Working Plan</a>, adopted on <a href="https://environment.ec.europa.eu/news/commission-adopts-first-working-plan-under-ecodesign-sustainable-products-regulation-2025-04-15_en" target="_blank" rel="noopener noreferrer">April 15, 2025</a>, sets the cadence for the delegated acts that will bind these requirements to specific product groups. Iron and steel delegated acts are scheduled for 2026. Textiles, apparel, tyres, and aluminium follow in 2027. Furniture in 2028. Mattresses in 2029. The first mandatory compliance deadline arrives sooner: under the <a href="https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng" target="_blank" rel="noopener noreferrer">EU Battery Regulation 2023/1542</a>, batteries become subject to passport requirements in February 2027. The central DPP registry that operationalizes the architecture launches July 19, 2026.</p>
+
+    <h2>Open</h2>
+
+    <p>In EU regulatory practice, "open" means built on publicly available, internationally recognized standards. The Commission has signaled that <a href="https://www.w3.org/TR/did-core/" target="_blank" rel="noopener noreferrer">W3C decentralized identifiers</a>, <a href="https://www.w3.org/TR/vc-data-model/" target="_blank" rel="noopener noreferrer">W3C verifiable credentials</a>, <a href="https://www.gs1.org/standards/id-keys" target="_blank" rel="noopener noreferrer">GS1 product identifiers</a>, and <a href="https://www.w3.org/TR/json-ld11/" target="_blank" rel="noopener noreferrer">JSON-LD</a> structured data are the technical primitives most closely aligned with the ESPR's open-standards mandate. The <a href="https://joinup.ec.europa.eu/collection/nifo-national-interoperability-framework-observatory/european-interoperability-framework-detail" target="_blank" rel="noopener noreferrer">European Interoperability Framework</a> provides the underlying definition of "open standard" that the regulation draws on.</p>
+
+    <p>A proprietary internal API powering a public verification page does not satisfy "open." The requirement reaches into the architecture underneath. Open standards have to be present where the data flows, including the layers a user never sees.</p>
+
+    <h2>Non-proprietary</h2>
+
+    <p>"Non-proprietary" is a replicability test. The regulation's technical guidance specifies operation "without dependence on any commercial technology provider." In practice, this means a third party with no prior business relationship to the certification body must be able to replicate verification access using publicly documented standards alone.</p>
+
+    <p>A platform that requires a vendor-specific SDK, a paid API tier, or a private contract to verify a certificate fails the replicability test. The certification body's ownership of the platform is irrelevant to the test. What matters is whether an independent party could rebuild access using nothing the certification body controls. The <a href="https://cirpassproject.eu/" target="_blank" rel="noopener noreferrer">CIRPASS</a> project, the EU-funded preparatory work for cross-sector DPP infrastructure, is built on exactly this principle.</p>
+
+    <h2>Machine-readable</h2>
+
+    <p>"Machine-readable" is the requirement most often confused with "online." The ESPR specifies data that is "structured and searchable," meaning formats consumable by software without human translation.</p>
+
+    <p>A human-readable verification page that returns rendered HTML with the words "Status: Valid" satisfies neither requirement. Practical formats that satisfy machine-readable include <a href="https://www.json.org/" target="_blank" rel="noopener noreferrer">JSON</a>, <a href="https://www.w3.org/TR/json-ld11/" target="_blank" rel="noopener noreferrer">JSON-LD</a>, <a href="https://www.w3.org/TR/xml/" target="_blank" rel="noopener noreferrer">XML</a>, and <a href="https://www.w3.org/TR/vc-data-model/" target="_blank" rel="noopener noreferrer">verifiable-credentials payloads</a> conforming to the W3C specification. The test is whether a regulator's compliance-monitoring software, an auditor's database tool, or a third-party verification service can retrieve and parse certificate status programmatically. If retrieval requires scraping a webpage or interpreting visual layout, the requirement is not met.</p>
+
+    <div class="callout">
+      <h3>The Four-Question Architectural Test</h3>
+      <p>A compliance team running an ESPR-readiness audit can clear the requirement using four questions:</p>
+      <ol>
+        <li>Can a third party with no prior relationship to the certification body retrieve verification status programmatically?</li>
+        <li>Is the data format documented in a public specification based on internationally recognized open standards?</li>
+        <li>Is the access path discoverable without contacting the certification body or its platform operator?</li>
+        <li>Could multiple independent clients implement verification against the same architecture using only public documentation?</li>
+      </ol>
+      <p>If the answer to all four is yes, the architecture meets the standard. If any answer is no, it does not. Across the certification industry, compliance teams typically run readiness audits at the user-experience layer. <strong>The four-question test surfaces what those audits miss, because the regulatory boundary lives at the architecture.</strong></p>
+    </div>
+
+    <h2>What compliance actually looks like</h2>
+
+    <p>The architectural primitives that satisfy the standard are public and documented. <a href="https://www.w3.org/TR/vc-data-model/" target="_blank" rel="noopener noreferrer">W3C verifiable credentials</a> carry the certificate payload. <a href="https://www.w3.org/TR/did-core/" target="_blank" rel="noopener noreferrer">W3C decentralized identifiers</a> tie the credential to the issuing body. <a href="https://www.w3.org/TR/json-ld11/" target="_blank" rel="noopener noreferrer">JSON-LD</a> provides the structured data format. <a href="https://www.rfc-editor.org/rfc/rfc8615" target="_blank" rel="noopener noreferrer">Well-known URIs</a> make the verification endpoint discoverable. The central DPP registry, launching July 19, 2026, will provide the discovery layer at union scale.</p>
+
+    <p>The operational question for certification bodies is implementation. The simplest path is neutral verification infrastructure that sits above existing certification platforms, exposing the required architecture without forcing a system migration. <a href="https://integralayer.io">IntegraLayer</a> was built to fill that role: a neutral certificate-layer endpoint that satisfies all three requirements while leaving the certification body's authority, branding, and program intact.</p>
+
+    <h2>Closer</h2>
+
+    <p>The first delegated acts under the ESPR will bind in 2026. The central registry launches in July of the same year. The compliance window is measured in months. The misread is correctable. The architecture under the user interface is where the work happens.</p>
+
+  </article>
+
+  <section class="tagline">
+    <div class="tagline-inner">
+      <div class="tagline-h">Trust isn't claimed. It's proven.</div>
+      <div class="tagline-sub">The Truth is Verifiable.</div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-inner">
+      <div>
+        <div class="cta-h">For certification bodies navigating the DPP category</div>
+        <div class="cta-p">IntegraLayer provides neutral verification infrastructure that sits above existing certification platforms. Independently verifiable in real time via QR code and blockchain timestamping. Patent pending.</div>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="https://integralayer.io/#contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Get in touch
+        </a>
+        <a class="btn btn-secondary" href="/perspectives/dpp-category-clarity">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Read Issue 01: DPP Category Clarity
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="foot-inner">
+      <div>
+        <div class="foot-tag">Trust isn't claimed. It's proven. The truth is verifiable.</div>
+        <div class="foot-meta">IntegraLayer LLC &nbsp;·&nbsp; Patent Pending &nbsp;·&nbsp; © 2026</div>
+      </div>
+      <div class="foot-right">
+        <div class="name">Rachel Buchanan, Founder &amp; CEO</div>
+        <a href="https://linkedin.com/in/rachel-buchanan-integralayer/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://integralayer.io">integralayer.io</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
