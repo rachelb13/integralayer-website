@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What "Open and Non-Proprietary" Mean in the ESPR — IntegraLayer</title>
-<meta name="description" content="Three architectural tests are written into Article 9 of the ESPR. Most existing certification verification systems clear one. Compliance requires all three. An IntegraLayer perspective on EU Regulation 2024/1781.">
+<title>Five Architectural Tests in the ESPR — IntegraLayer</title>
+<meta name="description" content="The EU's Digital Product Passport regime binds five requirements on every certification verification system referenced in a DPP. Most existing systems clear one or two. Compliance requires all five. An IntegraLayer perspective on EU Regulation 2024/1781.">
 <link rel="canonical" href="https://integralayer.io/perspectives/espr-open-non-proprietary">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="IntegraLayer">
-<meta property="og:title" content="What 'Open and Non-Proprietary' Mean in the ESPR">
-<meta property="og:description" content="Three architectural tests are written into Article 9. Most existing certification verification systems clear one. Compliance requires all three.">
+<meta property="og:title" content="Five Architectural Tests in the ESPR">
+<meta property="og:description" content="The EU's DPP regime binds five requirements on every certification verification system. Most existing systems clear one or two. Compliance requires all five.">
 <meta property="og:url" content="https://integralayer.io/perspectives/espr-open-non-proprietary">
 <meta property="og:image" content="https://integralayer.io/assets/img/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -17,8 +17,8 @@
 <meta property="article:published_time" content="2026-05-01">
 <meta property="article:author" content="Rachel Buchanan">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="What 'Open and Non-Proprietary' Mean in the ESPR">
-<meta name="twitter:description" content="Three architectural tests are written into Article 9. Most existing certification verification systems clear one. Compliance requires all three.">
+<meta name="twitter:title" content="Five Architectural Tests in the ESPR">
+<meta name="twitter:description" content="The EU's DPP regime binds five requirements on every certification verification system. Most existing systems clear one or two. Compliance requires all five.">
 <meta name="twitter:image" content="https://integralayer.io/assets/img/og-image.png">
 <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -488,8 +488,8 @@
 
   <header class="hero">
     <div class="eyebrow fade-up">IntegraLayer Perspective · Issue 02</div>
-    <h1 class="title fade-up">What "Open and Non-Proprietary" Mean in the <em>ESPR</em></h1>
-    <p class="subtitle fade-up">Three architectural tests are written into Article 9. Most existing certification verification systems clear one. Compliance requires all three.</p>
+    <h1 class="title fade-up"><em>Five</em> Architectural Tests in the ESPR</h1>
+    <p class="subtitle fade-up">The EU's Digital Product Passport regime binds five requirements on every certification verification system referenced in a DPP. Most existing systems clear one or two. Compliance requires all five.</p>
     <div class="byline fade-up">
       <div class="byline-item">
         <span class="label">Published</span>
@@ -501,36 +501,36 @@
       </div>
       <div class="byline-item">
         <span class="label">Reading time</span>
-        <span class="val">~4 minutes</span>
+        <span class="val">~5 minutes</span>
       </div>
     </div>
   </header>
 
   <article class="article">
 
-    <p class="lede">As the EU's <a href="https://environment.ec.europa.eu/strategy/circular-economy/ecodesign-sustainable-products-regulation_en" target="_blank" rel="noopener noreferrer">Digital Product Passport</a> regime moves toward its central registry launch on July 19, 2026, three words in <a href="https://eur-lex.europa.eu/eli/reg/2024/1781/oj/eng" target="_blank" rel="noopener noreferrer">EU Regulation 2024/1781</a> carry the architectural requirement for certification verification across the union. Open. Non-proprietary. Machine-readable.</p>
+    <p class="lede">As the EU's <a href="https://environment.ec.europa.eu/strategy/circular-economy/ecodesign-sustainable-products-regulation_en" target="_blank" rel="noopener noreferrer">Digital Product Passport</a> regime moves toward its central registry launch on July 19, 2026, <a href="https://eur-lex.europa.eu/eli/reg/2024/1781/oj/eng" target="_blank" rel="noopener noreferrer">EU Regulation 2024/1781</a> binds five architectural requirements on every certification verification system referenced in a DPP. Open and non-proprietary. Machine-readable. Real-time. Independently verifiable. Persistent and durable for the lifetime of the product.</p>
 
-    <p class="first">Each is a separate test. Each binds independently. The requirement binds at the architecture layer, beneath the user interface, and most existing verification systems do not clear it.</p>
+    <p class="first">Two of these requirements govern the format of the data. Three govern the behavior of the verification path. Each binds independently. Most existing systems clear one or two. Compliance requires all five.</p>
 
     <h2>What the regulation says</h2>
 
-    <p><a href="https://eur-lex.europa.eu/eli/reg/2024/1781/oj/eng#art_9" target="_blank" rel="noopener noreferrer">Article 9</a> of the <a href="https://commission.europa.eu/energy-climate-change-environment/standards-tools-and-labels/products-labelling-rules-and-requirements/ecodesign-sustainable-products-regulation_en" target="_blank" rel="noopener noreferrer">Ecodesign for Sustainable Products Regulation</a> (the ESPR, EU Regulation 2024/1781) specifies that Digital Product Passport data must be based on "open standards and interoperable formats" and must be "machine-readable, searchable and structured." The regulation's accompanying technical guidance is more specific: the standards must be "open, non-proprietary international standards," and the technologies underlying DPP infrastructure must operate "without dependence on any commercial technology provider."</p>
+    <p><a href="https://eur-lex.europa.eu/eli/reg/2024/1781/oj/eng#art_9" target="_blank" rel="noopener noreferrer">Article 9</a> of the <a href="https://commission.europa.eu/energy-climate-change-environment/standards-tools-and-labels/products-labelling-rules-and-requirements/ecodesign-sustainable-products-regulation_en" target="_blank" rel="noopener noreferrer">Ecodesign for Sustainable Products Regulation</a> (the ESPR), with related provisions in Articles 10 and 11, sets the architectural requirements for the verification path referenced in any Digital Product Passport.</p>
 
-    <p>These are three distinct requirements. Open and non-proprietary are not synonyms. Machine-readable is a separate test from both. A verification system can clear one and fail the others. Compliance requires all three.</p>
+    <p>Two govern the data format. The standards must be "open, non-proprietary international standards." The output must be "machine-readable, searchable and structured."</p>
 
-    <p>The Commission's <a href="https://green-forum.ec.europa.eu/implementing-ecodesign-sustainable-products-regulation_en" target="_blank" rel="noopener noreferrer">2025-2030 ESPR Working Plan</a>, adopted on <a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1071" target="_blank" rel="noopener noreferrer">April 15, 2025</a>, sets the cadence for the delegated acts that will bind these requirements to specific product groups. Iron and steel delegated acts are scheduled for 2026. Textiles, apparel, tyres, and aluminium follow in 2027. Furniture in 2028. Mattresses in 2029. The first mandatory compliance deadline arrives sooner: under the <a href="https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng" target="_blank" rel="noopener noreferrer">EU Battery Regulation 2023/1542</a>, batteries become subject to passport requirements in February 2027. The central DPP registry that operationalizes the architecture launches July 19, 2026.</p>
+    <p>Three govern the behavior of the verification path. The data must be "accurate, complete and up to date." Ecodesign requirements must be "verifiable" through public, Commission-identified means. The passport must remain accessible "even in the event of insolvency or if the responsible party ceases operations within the EU," for at least the typical lifetime of the product plus ten years.</p>
 
-    <h2>Open</h2>
+    <p>A verification system can clear two of these and fail three. Compliance requires all five.</p>
 
-    <p>In EU regulatory practice, "open" means built on publicly available, internationally recognized standards. The Commission has signaled that <a href="https://www.w3.org/TR/did-core/" target="_blank" rel="noopener noreferrer">W3C decentralized identifiers</a>, <a href="https://www.w3.org/TR/vc-data-model/" target="_blank" rel="noopener noreferrer">W3C verifiable credentials</a>, <a href="https://www.gs1.org/standards/id-keys" target="_blank" rel="noopener noreferrer">GS1 product identifiers</a>, and <a href="https://www.w3.org/TR/json-ld11/" target="_blank" rel="noopener noreferrer">JSON-LD</a> structured data are the technical primitives most closely aligned with the ESPR's open-standards mandate. The <a href="https://joinup.ec.europa.eu/collection/nifo-national-interoperability-framework-observatory/european-interoperability-framework-detail" target="_blank" rel="noopener noreferrer">European Interoperability Framework</a> provides the underlying definition of "open standard" that the regulation draws on.</p>
+    <p>The Commission's <a href="https://green-forum.ec.europa.eu/implementing-ecodesign-sustainable-products-regulation_en" target="_blank" rel="noopener noreferrer">2025-2030 ESPR Working Plan</a>, adopted on <a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1071" target="_blank" rel="noopener noreferrer">April 15, 2025</a>, sets the cadence for the delegated acts that bind these requirements to specific product groups. Iron and steel delegated acts are scheduled for 2026. Textiles, apparel, tyres, and aluminium follow in 2027. Furniture in 2028. The first mandatory compliance deadline arrives sooner: under the <a href="https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng" target="_blank" rel="noopener noreferrer">EU Battery Regulation 2023/1542</a>, batteries become subject to passport requirements in February 2027. The central DPP registry launches July 19, 2026.</p>
 
-    <p>A proprietary internal API powering a public verification page does not satisfy "open." The requirement reaches into the architecture underneath. Open standards have to be present where the data flows, including the layers a user never sees.</p>
+    <h2>Open and non-proprietary</h2>
 
-    <h2>Non-proprietary</h2>
+    <p>In EU regulatory practice, "open" means built on publicly available, internationally recognized standards. The Commission has signaled that <a href="https://www.w3.org/TR/did-core/" target="_blank" rel="noopener noreferrer">W3C decentralized identifiers</a>, <a href="https://www.w3.org/TR/vc-data-model/" target="_blank" rel="noopener noreferrer">W3C verifiable credentials</a>, <a href="https://www.gs1.org/standards/id-keys" target="_blank" rel="noopener noreferrer">GS1 product identifiers</a>, and <a href="https://www.w3.org/TR/json-ld11/" target="_blank" rel="noopener noreferrer">JSON-LD</a> structured data are the technical primitives most closely aligned with the ESPR's open-standards mandate. The <a href="https://joinup.ec.europa.eu/collection/nifo-national-interoperability-framework-observatory/european-interoperability-framework-detail" target="_blank" rel="noopener noreferrer">European Interoperability Framework</a> provides the underlying definition of "open standard" the regulation draws on.</p>
 
-    <p>"Non-proprietary" is a replicability test. The regulation's technical guidance specifies operation "without dependence on any commercial technology provider." In practice, this means a third party with no prior business relationship to the certification body must be able to replicate verification access using publicly documented standards alone.</p>
+    <p>"Non-proprietary" is a replicability test. The regulation's technical guidance specifies operation "without dependence on any commercial technology provider." A third party with no prior business relationship to the certification body must be able to replicate verification access using publicly documented standards alone. A platform that requires a vendor-specific SDK, a paid API tier, or a private contract to verify a certificate fails the replicability test.</p>
 
-    <p>A platform that requires a vendor-specific SDK, a paid API tier, or a private contract to verify a certificate fails the replicability test. The certification body's ownership of the platform is irrelevant to the test. What matters is whether an independent party could rebuild access using nothing the certification body controls. The <a href="https://cirpassproject.eu/" target="_blank" rel="noopener noreferrer">CIRPASS</a> project, the EU-funded preparatory work for cross-sector DPP infrastructure, is built on exactly this principle.</p>
+    <p>Together, these two requirements test the architecture beneath the user interface. A proprietary internal API powering a public verification page does not satisfy them. Open standards have to be present where the data flows, including the layers a user never sees.</p>
 
     <h2>Machine-readable</h2>
 
@@ -538,23 +538,42 @@
 
     <p>A human-readable verification page that returns rendered HTML with the words "Status: Valid" satisfies neither requirement. Practical formats that satisfy machine-readable include <a href="https://www.json.org/" target="_blank" rel="noopener noreferrer">JSON</a>, <a href="https://www.w3.org/TR/json-ld11/" target="_blank" rel="noopener noreferrer">JSON-LD</a>, <a href="https://www.w3.org/standards/xml/" target="_blank" rel="noopener noreferrer">XML</a>, and <a href="https://www.w3.org/TR/vc-data-model/" target="_blank" rel="noopener noreferrer">verifiable-credentials payloads</a> conforming to the W3C specification. The test is whether a regulator's compliance-monitoring software, an auditor's database tool, or a third-party verification service can retrieve and parse certificate status programmatically. If retrieval requires scraping a webpage or interpreting visual layout, the requirement is not met.</p>
 
+    <h2>Real-time</h2>
+
+    <p><a href="https://eur-lex.europa.eu/eli/reg/2024/1781/oj/eng#art_10" target="_blank" rel="noopener noreferrer">Article 10</a> specifies that DPP data must be "accurate, complete and up to date." For certification verification, the verification path must reflect the certificate's current status at the moment of the check. A static record showing a status from the date of issuance does not satisfy the requirement once the certificate has been updated, suspended, or revoked.</p>
+
+    <p>The practical implication for certification bodies: any change in a certificate's status, including revocation, expiration, scope change, or suspension pending review, must propagate to the verification path within an interval short enough that a downstream user querying the path receives the current state. The regulation does not specify a maximum latency. The operational floor is the time it takes for a regulator to act in error against a stale "valid" status. Most existing certification portals update on batch cycles measured in days or weeks. The ESPR moves the floor.</p>
+
+    <h2>Independently verifiable</h2>
+
+    <p>The ESPR requires ecodesign requirements to be "verifiable" through means the Commission identifies, including direct checks of the product or technical documentation. The architectural implication: a third party with no relationship to the certification body must be able to verify a certificate's status through public documentation and standards alone, without needing the certification body to confirm or assist.</p>
+
+    <p>The practical test is the disappearance check. If the certification body's customer service team, sales contacts, and account managers were unavailable, could a regulator still verify a certificate against the public verification path? The verification must hold without human intervention from the issuing organization.</p>
+
+    <h2>Persistent and durable</h2>
+
+    <p><a href="https://eur-lex.europa.eu/eli/reg/2024/1781/oj/eng#art_11" target="_blank" rel="noopener noreferrer">Article 11</a> requires the DPP to "remain accessible" for at least the typical lifetime of the product plus an additional period the Commission sets through delegated acts. EU guidance currently anchors that period at five to ten years post-product-placement, with the regulation explicit that accessibility must continue "even in the event of insolvency or if the responsible party ceases operations within the EU."</p>
+
+    <p>For certification verification specifically, the verification path cannot collapse if the certification body restructures, changes vendor, or ceases operations. The verification record must persist independently of any single commercial entity's continued existence, including the certification body itself. This is the requirement that most clearly forces neutral, independently-hosted infrastructure into the architecture.</p>
+
     <div class="callout">
-      <h3>The Four-Question Architectural Test</h3>
-      <p>A compliance team running an ESPR-readiness audit can clear the requirement using four questions:</p>
+      <h3>The Five-Question Architectural Test</h3>
+      <p>A compliance team running an ESPR-readiness audit can clear the requirements using five questions:</p>
       <ol>
-        <li>Can a third party with no prior relationship to the certification body retrieve verification status programmatically?</li>
-        <li>Is the data format documented in a public specification based on internationally recognized open standards?</li>
-        <li>Is the access path discoverable without contacting the certification body or its platform operator?</li>
-        <li>Could multiple independent clients implement verification against the same architecture using only public documentation?</li>
+        <li>Can a third party with no prior relationship to the certification body retrieve verification status programmatically, using only publicly documented standards?</li>
+        <li>Is the data format machine-readable and structured (JSON, JSON-LD, XML, or W3C verifiable-credentials), addressable through a discoverable endpoint?</li>
+        <li>Does the verification path reflect the certificate's current status in real time, including revocation, expiration, and scope change?</li>
+        <li>Can the verification be completed without any contact, confirmation, or assistance from the certification body or its platform operator?</li>
+        <li>Will the verification path remain accessible for the lifetime of the product plus the regulatory minimum period, even if the certification body or its platform operator ceases operations?</li>
       </ol>
-      <p>If the answer to all four is yes, the architecture meets the standard. If any answer is no, it does not. Across the certification industry, compliance teams typically run readiness audits at the user-experience layer. <strong>The four-question test surfaces what those audits miss, because the regulatory boundary lives at the architecture.</strong></p>
+      <p>If the answer to all five is yes, the architecture meets the standard. If any answer is no, it does not. Across the certification industry, compliance teams typically run readiness audits at the user-experience layer. <strong>The five-question test surfaces what those audits miss, because the regulatory boundary lives at the architecture.</strong></p>
     </div>
 
     <h2>What compliance actually looks like</h2>
 
-    <p>The architectural primitives that satisfy the standard are public and documented. <a href="https://www.w3.org/TR/vc-data-model/" target="_blank" rel="noopener noreferrer">W3C verifiable credentials</a> carry the certificate payload. <a href="https://www.w3.org/TR/did-core/" target="_blank" rel="noopener noreferrer">W3C decentralized identifiers</a> tie the credential to the issuing body. <a href="https://www.w3.org/TR/json-ld11/" target="_blank" rel="noopener noreferrer">JSON-LD</a> provides the structured data format. <a href="https://www.rfc-editor.org/rfc/rfc8615" target="_blank" rel="noopener noreferrer">Well-known URIs</a> make the verification endpoint discoverable. The central DPP registry, launching July 19, 2026, will provide the discovery layer at union scale.</p>
+    <p>The architectural primitives that satisfy the standard are public and documented. <a href="https://www.w3.org/TR/vc-data-model/" target="_blank" rel="noopener noreferrer">W3C verifiable credentials</a> carry the certificate payload. <a href="https://www.w3.org/TR/did-core/" target="_blank" rel="noopener noreferrer">W3C decentralized identifiers</a> tie the credential to the issuing body. <a href="https://www.w3.org/TR/json-ld11/" target="_blank" rel="noopener noreferrer">JSON-LD</a> provides the structured data format. <a href="https://www.rfc-editor.org/rfc/rfc8615" target="_blank" rel="noopener noreferrer">Well-known URIs</a> make the verification endpoint discoverable. Real-time status propagation is handled through revocation registries and timestamped records. Persistence is handled through neutral, independently-hosted infrastructure that does not depend on any single commercial entity's continued existence. The central DPP registry, launching July 19, 2026, will provide the discovery layer at union scale.</p>
 
-    <p>The operational question for certification bodies is implementation. The simplest path is neutral verification infrastructure that sits above existing certification platforms, exposing the required architecture without forcing a system migration. <a href="https://integralayer.io">IntegraLayer</a> was built to fill that role: a neutral certificate-layer endpoint that satisfies all three requirements while leaving the certification body's authority, branding, and program intact.</p>
+    <p>The operational question for certification bodies is implementation. The simplest path is neutral verification infrastructure that sits above existing certification platforms, exposing the required architecture without forcing a system migration. <a href="https://integralayer.io">IntegraLayer</a> was built to fill that role: a neutral certificate-layer endpoint that satisfies all five requirements while leaving the certification body's authority, branding, and program intact.</p>
 
     <h2>Closer</h2>
 
