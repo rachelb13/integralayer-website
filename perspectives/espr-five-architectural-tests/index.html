@@ -508,7 +508,7 @@
 
   <article class="article">
 
-    <p class="lede">As the EU's <a href="https://environment.ec.europa.eu/strategy/circular-economy/ecodesign-sustainable-products-regulation_en" target="_blank" rel="noopener noreferrer">Digital Product Passport</a> regime moves toward its central registry launch on July 19, 2026, <a href="https://eur-lex.europa.eu/eli/reg/2024/1781/oj/eng" target="_blank" rel="noopener noreferrer">EU Regulation 2024/1781</a> binds five architectural requirements on every certification verification system referenced in a DPP. Open and non-proprietary. Machine-readable. Real-time. Independently verifiable. Persistent and durable for the lifetime of the product.</p>
+    <p class="lede">As the EU's <a href="https://environment.ec.europa.eu/strategy/circular-economy/ecodesign-sustainable-products-regulation_en" target="_blank" rel="noopener noreferrer">Digital Product Passport</a> regime moves toward its the Commission's July 19, 2026 deadline for the central registry, <a href="https://eur-lex.europa.eu/eli/reg/2024/1781/oj/eng" target="_blank" rel="noopener noreferrer">EU Regulation 2024/1781</a> binds five architectural requirements on every certification verification system referenced in a DPP. Open and non-proprietary. Machine-readable. Real-time. Independently verifiable. Persistent and durable for the lifetime of the product.</p>
 
     <p class="first">Two of these requirements govern the format of the data. Three govern the behavior of the verification path. Each binds independently. Most existing systems clear one or two. Compliance requires all five.</p>
 
@@ -522,7 +522,7 @@
 
     <p>A verification system can clear two of these and fail three. Compliance requires all five.</p>
 
-    <p>The Commission's <a href="https://green-forum.ec.europa.eu/implementing-ecodesign-sustainable-products-regulation_en" target="_blank" rel="noopener noreferrer">2025-2030 ESPR Working Plan</a>, adopted on <a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1071" target="_blank" rel="noopener noreferrer">April 15, 2025</a>, sets the cadence for the delegated acts that bind these requirements to specific product groups. Iron and steel delegated acts are scheduled for 2026. Textiles, apparel, tyres, and aluminium follow in 2027. Furniture in 2028. The first mandatory compliance deadline arrives sooner: under the <a href="https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng" target="_blank" rel="noopener noreferrer">EU Battery Regulation 2023/1542</a>, batteries become subject to passport requirements in February 2027. The central DPP registry launches July 19, 2026.</p>
+    <p>The Commission's <a href="https://green-forum.ec.europa.eu/implementing-ecodesign-sustainable-products-regulation_en" target="_blank" rel="noopener noreferrer">2025-2030 ESPR Working Plan</a>, adopted on <a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1071" target="_blank" rel="noopener noreferrer">April 15, 2025</a>, sets the cadence for the delegated acts that bind these requirements to specific product groups. Iron and steel delegated acts are scheduled for 2026. Textiles, apparel, tyres, and aluminium follow in 2027. Furniture in 2028. The first mandatory compliance deadline arrives sooner: under the <a href="https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng" target="_blank" rel="noopener noreferrer">EU Battery Regulation 2023/1542</a>, batteries become subject to passport requirements in February 2027. The Commission's deadline to have the central DPP registry in place is July 19, 2026.</p>
 
     <h2>Open and non-proprietary</h2>
 
@@ -571,13 +571,13 @@
 
     <h2>What compliance actually looks like</h2>
 
-    <p>The architectural primitives that satisfy the standard are public and documented. <a href="https://www.w3.org/TR/vc-data-model/" target="_blank" rel="noopener noreferrer">W3C verifiable credentials</a> carry the certificate payload. <a href="https://www.w3.org/TR/did-core/" target="_blank" rel="noopener noreferrer">W3C decentralized identifiers</a> tie the credential to the issuing body. <a href="https://www.w3.org/TR/json-ld11/" target="_blank" rel="noopener noreferrer">JSON-LD</a> provides the structured data format. <a href="https://www.rfc-editor.org/rfc/rfc8615" target="_blank" rel="noopener noreferrer">Well-known URIs</a> make the verification endpoint discoverable. Real-time status propagation is handled through revocation registries and timestamped records. Persistence is handled through neutral, independently-hosted infrastructure that does not depend on any single commercial entity's continued existence. The central DPP registry, launching July 19, 2026, will provide the discovery layer at union scale.</p>
+    <p>The architectural primitives that satisfy the standard are public and documented. <a href="https://www.w3.org/TR/vc-data-model/" target="_blank" rel="noopener noreferrer">W3C verifiable credentials</a> carry the certificate payload. <a href="https://www.w3.org/TR/did-core/" target="_blank" rel="noopener noreferrer">W3C decentralized identifiers</a> tie the credential to the issuing body. <a href="https://www.w3.org/TR/json-ld11/" target="_blank" rel="noopener noreferrer">JSON-LD</a> provides the structured data format. <a href="https://www.rfc-editor.org/rfc/rfc8615" target="_blank" rel="noopener noreferrer">Well-known URIs</a> make the verification endpoint discoverable. Real-time status propagation is handled through revocation registries and timestamped records. Persistence is handled through neutral, independently-hosted infrastructure that does not depend on any single commercial entity's continued existence. The central DPP registry, which the Commission is required to have in place by July 19, 2026, will provide the discovery layer at union scale.</p>
 
-    <p>The operational question for certification bodies is implementation. The simplest path is neutral verification infrastructure that sits above existing certification platforms, exposing the required architecture without forcing a system migration. <a href="https://integralayer.io">IntegraLayer</a> was built to fill that role: a neutral certificate-layer endpoint that satisfies all five requirements while leaving the certification body's authority, branding, and program intact.</p>
+    <p>The operational question for certification bodies is implementation. The simplest path is neutral verification infrastructure that sits above existing certification platforms, exposing the required architecture without forcing a system migration. <a href="https://integralayer.io">IntegraLayer</a> was built to fill that role: a neutral verification layer that satisfies all five requirements while leaving the certification body's authority, branding, and program intact.</p>
 
     <h2>Closer</h2>
 
-    <p>The first delegated acts under the ESPR will bind in 2026. The central registry launches in July of the same year. The compliance window is measured in months. The misread is correctable. The architecture under the user interface is where the work happens.</p>
+    <p>The first delegated acts under the ESPR will bind in 2026. The central registry deadline falls in July of the same year. The compliance window is measured in months. The misread is correctable. The architecture under the user interface is where the work happens.</p>
 
   </article>
 
@@ -592,7 +592,7 @@
     <div class="cta-inner">
       <div>
         <div class="cta-h">For certification bodies navigating the DPP category</div>
-        <div class="cta-p">IntegraLayer provides neutral verification infrastructure that sits above existing certification platforms. Independently verifiable in real time via QR code and blockchain timestamping. Patent pending.</div>
+        <div class="cta-p">IntegraLayer provides neutral verification infrastructure that sits above existing certification platforms. Independently verifiable in real time, on open standards, with your authority intact. Patent pending.</div>
       </div>
       <div class="cta-actions">
         <a class="btn btn-primary" href="/assets/ESPR_Open_Non_Proprietary_OnePager.pdf" download>
